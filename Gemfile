@@ -19,7 +19,7 @@ gem 'autoprefixer-rails'
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
-  
+
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
@@ -28,3 +28,8 @@ group :development, :test do
 end
 
 
+# add ones:
+gem "rails-controller-testing"
+gem 'rails_12factor', group: :production
+gem 'cloudinary', '1.1.0'
+gem 'carrierwave'
