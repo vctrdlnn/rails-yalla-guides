@@ -1,29 +1,10 @@
 Rails.application.routes.draw do
-  get 'bookings/index'
 
-  get 'bookings/show'
+  resources :guides do
+    resources :bookings
+  end
 
-  get 'bookings/new'
-
-  get 'bookings/edit'
-
-  get 'bookings/destroy'
-
-  get 'guides/index'
-
-  get 'guides/show'
-
-  get 'guides/new'
-
-  get 'guides/edit'
-
-  get 'guides/destroy'
-
-  get 'profiles/show'
-
-  get 'profiles/new'
-
-  get 'profiles/edit'
+  resources :profiles
 
   devise_for :users
   root to: 'pages#home'

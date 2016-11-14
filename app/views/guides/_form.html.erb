@@ -1,0 +1,26 @@
+<%= simple_form_for(@guide) do |f| %>
+  <% if @guide.errors.any? %>
+   <div id="error_explanation">
+     <ul>
+     <% @guide.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+     <% end %>
+     </ul>
+   </div>
+  <% end %>
+
+  <%= f.input :title %>
+  <%= f.input :description %>
+  <%= f.input :start_address %>
+  <%= f.input :end_address %>
+  <%= f.input :city %>
+  <%= f.input :hourly_price %>
+  <%= f.input :category %>
+  <%= f.input :photo %>
+  <% # TODO: add here photo cache %>
+  <%= f.button :submit %>
+  <%= link_to "Back", guides_path, {class: "btn btn-primary"} %>
+<% end %>
+
+
+
