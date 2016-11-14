@@ -1,1 +1,37 @@
-// Your footer style
+#footer{
+  font-size:14px;
+  line-height:1.42857143;
+  color:#333;
+  background-color: #616566;
+  .fa.footer-contacts-icon {
+  background-color:#33383b;
+  color:#fff;
+  font-size:18px;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  text-align:center;
+  line-height:35px;
+  margin:10px 15px 10px 0;
+  }
+  .social-links a {
+  display:inline-block;
+  width:34px;
+  height:34px;
+  cursor:pointer;
+  background-color:#33383b;
+  border-radius:2px;
+  font-size:20px;
+  color:#ffffff;
+  text-align:center;
+  line-height:35px;
+  margin-right:5px;
+  margin-bottom:5px;
+  }
+  .align{
+    display: flex;
+    p{
+    padding-top: 18px;
+    }
+  }
+}
