@@ -1,2 +1,19 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
+
+<%= simple_form_for [@guide, @profile , @booking] do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+    <%= f.input :description %>
+  </div>
+
+  <div class="display-ingredients">
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
