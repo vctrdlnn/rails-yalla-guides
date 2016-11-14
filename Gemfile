@@ -33,3 +33,4 @@ gem "rails-controller-testing"
 gem 'rails_12factor', group: :production
 gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
+gem 'devise'
