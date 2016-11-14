@@ -1,4 +1,24 @@
 Rails.application.routes.draw do
+  get 'bookings/index'
+
+  get 'bookings/show'
+
+  get 'bookings/new'
+
+  get 'bookings/edit'
+
+  get 'bookings/destroy'
+
+  get 'guides/index'
+
+  get 'guides/show'
+
+  get 'guides/new'
+
+  get 'guides/edit'
+
+  get 'guides/destroy'
+
   get 'profiles/show'
 
   get 'profiles/new'
