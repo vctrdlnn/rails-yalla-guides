@@ -37,7 +37,7 @@ class GuidesController < ApplicationController
 
   def destroy
     @guide.destroy
-    redirect_to @guides_path
+    redirect_to @guides_path # TODO: check this path
   end
 
   private
