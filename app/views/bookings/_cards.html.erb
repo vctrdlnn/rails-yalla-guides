@@ -1,4 +1,11 @@
-<% if @bookings.length > 0 %>
+<% if @bookings.empty? %>
+  <h2>No bookings yet!</h2>
+  <%= link_to guides_path do %>
+    <button type="button" class="btn btn-success btn-lg">
+      Start booking now!
+    </button>
+  <% end %>
+<% else %>
   <% @bookings.each do |booking| %>
     <div class="col-xs-12 col-sm-6 col-md-3">
       <div class="card">
@@ -26,11 +33,4 @@
       </div>
     </div>
   <% end %>
-<% else %>
-  <h2>No bookings yet!</h2>
-    <%= link_to guides_path do %>
-      <button type="button" class="btn btn-success btn-lg">
-        Start booking now!
-      </button>
-    <% end %>
 <% end %>

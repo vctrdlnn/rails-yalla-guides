@@ -1,4 +1,11 @@
-<% if @guides.length > 0 %>
+<% if @guides.empty? %>
+  <h2>No tours yet!</h2>
+  <%= link_to new_guide_path do %>
+    <button type="button" class="btn btn-success btn-lg">
+      Propose a tour in your city now!
+    </button>
+  <% end %>
+<% else %>
   <% @guides.each do |guide| %>
     <div class="col-xs-12 col-sm-4">
       <ul class='card-title list-inline text-center'>
@@ -24,11 +31,4 @@
 
     </div>
   <% end %>
-<% else %>
-  <h2>No tours yet!</h2>
-    <%= link_to new_guide_path do %>
-      <button type="button" class="btn btn-success btn-lg">
-        Propose a tour in your city now!
-      </button>
-    <% end %>
 <% end %>

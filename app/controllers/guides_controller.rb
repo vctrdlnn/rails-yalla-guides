@@ -1,5 +1,6 @@
 class GuidesController < ApplicationController
-  before_action :find_guide, only: [:show, :update, :destroy, :edit]
+  before_action :set_guide, only: [:show, :update, :destroy, :edit]
+  before_action :set_profile, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @guides = Guide.all
@@ -37,12 +38,16 @@ class GuidesController < ApplicationController
 
   def destroy
     @guide.destroy
-    redirect_to @guides_path # TODO: check this path
+    redirect_to guides_path # TODO: check this path
   end
 
   private
 
-  def find_guide
+  def set_profile
+    current_user.profiles.where(role: 'host').first
+  end
+
+  def set_guide
     @guide = Guide.find(params[:id])
   end
 
