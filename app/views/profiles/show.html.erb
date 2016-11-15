@@ -1,2 +1,12 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="wrapper">
+  <div class="page-header">
+    <h2>
+      <%= "Welcome #{@user.first_name} #{@user.last_name}" %>
+    </h2>
+    <p>
+      <%= "Are you ready to #{@profile.role}" %>
+    </p>
+</div>
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', root_path %>

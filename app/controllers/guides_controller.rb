@@ -15,7 +15,7 @@ class GuidesController < ApplicationController
 
   def create
     @guide = Guide.new(guide_params)
-    # @guide.profile_id = 1
+    @guide.profile_id = 1
     if @guide.save
       redirect_to @guide
     else
@@ -37,7 +37,7 @@ class GuidesController < ApplicationController
 
   def destroy
     @guide.destroy
-    redirect_to @guides_path #check this path
+    redirect_to @guides_path # TODO: check this path
   end
 
   private
