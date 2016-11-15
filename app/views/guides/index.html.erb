@@ -1,47 +1,49 @@
-<h2>Pick your guide</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <div class="row">
-        <% @guides.each do |guide| %>
-          <div class="col-xs-12 col-sm-6">
 
-            <% if guide[:photo] %>
-              <div class="card"
-                style="background-image: url('<%= cl_image_path guide.photo, height: 200, width: 200, crop: :fill %>')">
-                <%= link_to "", guide_path(guide), {class: "card-link"} %>
-              </div>
-            <% end %>
+<div class="wrapper">
+  <div class="container text-center">
+  <h2>Pick your guide</h2>
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-6">
+        <div class="row">
+          <% @guides.each do |guide| %>
+            <div class="col-xs-12 col-sm-7">
+                <div class="card text-center">
+                  <%= link_to "", guide_path(guide), {class: "card-link"} %>
+                  <%= image_tag guide.photo, height: 200, width: 300, crop: :fill %>
+                  <div class="card-name"><%= guide.profile.user.first_name %></div>
+                  <div class="card-price"><%= '€' + guide.hourly_price.to_s + '/hour'%></div>
+                    <div class="row">
+                      <div class="col-xs-12 col-lg-6">
+                        <div class="cart-review"><%= 'the reviews here' %></div>
+                      </div>
+                      <div class="col-xs-12 col-lg-6">
+                        <div class="card-title"><%= guide.title %></div>
+                      </div>
+                    </div>
+                    <ul class='card-title list-inline text-center'>
+                        <% if current_user.profiles.where(role: 'host').first != nil %>
+                          <li><%= link_to edit_guide_path(guide) do %>
+                          <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>
+                        <% end %></li>
+                          <li><%= link_to guide_path(guide), method: :delete,
+                          data: { confirm: "Are you sure?" } do %>
+                          <i class="fa fa-trash fa-1x" aria-hidden="true"></i>
+                        <% end %></li>
+                    </ul>
 
-            <div class="card-description text-center">
-              <%= '€' + guide.hourly_price.to_s + '/hour'%>
-
-              <ul class='card-title list-inline text-center'>
-                <li><%= guide.title %></li>
-                <% if current_user.profiles.where(role: 'host').first != nil %>
-                  <li><%= link_to edit_guide_path(guide) do %>
-                    <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>
-                  <% end %></li>
-                  <li><%= link_to guide_path(guide), method: :delete,
-                    data: { confirm: "Are you sure?" } do %>
-                    <i class="fa fa-trash fa-1x" aria-hidden="true"></i>
-                  <% end %></li>
-                <% end %>
-              </ul>
-              <%= 'the reviews here' %>
+                </div>
             </div>
-
-
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
+      <% end %>
 
-    <div class="col-xs-12 col-sm-6">
-      <%= 'card' %>
+      <div class="col-xs-12 col-sm-5">
+      </div>
     </div>
   </div>
 </div>
+
 
 
 
