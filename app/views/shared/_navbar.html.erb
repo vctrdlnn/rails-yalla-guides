@@ -21,7 +21,7 @@
     <% else %>
       <div class="collapse navbar-collapse" id="navcol-1">
         <p class="navbar-text navbar-right actions">
-          <%= link_to("sign in", new_user_session_path, class: "navbar-link login") %>
+          <%= link_to("sign in", new_user_session_path, class: "navbar-link login" ,'data-toggle' => 'modal', 'data-target' => "#myModal") %>
           <%= link_to("sign up", new_user_registration_path, class: "btn btn-default action-button", role: "button") %>
         </p>
       </div>
