@@ -1,2 +1,20 @@
-<h1>Guides#show</h1>
-<p>Find me in app/views/guides/show.html.erb</p>
+
+  <h2><%= @guide.title %></h2>
+  <h2><%= @guide.description %></h2>
+  <h2><%= @guide.start_address %></h2>
+  <h2><%= @guide.end_address %></h2>
+  <h2><%= @guide.city %></h2>
+  <h2><%= @guide.hourly_price %></h2>
+  <h2><%= @guide.category %></h2>
+
+    <% if @guide[:photo] %>
+    <%= cl_image_tag @guide.photo, height: 350, width: 350, crop: :fill , class: "guide-photo"%>
+  <% end %>
+
+  <% if @guide[:photo] %>
+    <div class="card-notes" style="background-image: url('<%= cl_image_path "https://openclipart.org/image/2400px/svg_to_png/181867/note-papier2.png", height: 250, width: 150, crop: :fill %>')">
+    <% end %>
+
+  <%= link_to guides_path do %>
+    <button type="button" class="btn btn-primary">Back</button>
+  <% end %>

@@ -1,2 +1,18 @@
-<h1>Guides#index</h1>
-<p>Find me in app/views/guides/index.html.erb</p>
+<h1>Guides</h1>
+
+<% @guides.each do |guide| %>
+  <ul class='list-inline'>
+    <li><h4><%= guide.title %></h4></li>
+    <li><h4><%= guide.description %></h4></li>
+    <li><%= link_to edit_guide_path(guide) do %>
+      <i class="fa fa-pencil fa-1x" aria-hidden="true"></i>
+    <% end %></li>
+    <li><%= link_to guide_path(guide),method: :delete,
+      data: { confirm: "Are you sure?" } do %>
+        <i class="fa fa-trash fa-1x" aria-hidden="true"></i>
+      <% end %></li>
+  </ul>
+
+<%end%>
+
+

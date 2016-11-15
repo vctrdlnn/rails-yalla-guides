@@ -27,7 +27,6 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-
 # add ones:
 gem "rails-controller-testing"
 gem 'rails_12factor', group: :production
