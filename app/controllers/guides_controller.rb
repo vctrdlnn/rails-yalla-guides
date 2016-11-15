@@ -18,7 +18,7 @@ class GuidesController < ApplicationController
     @guide = Guide.new(guide_params)
     @guide.profile_id = @profile.id
     if @guide.save
-      redirect_to @guide
+      redirect_to @guide, notice: 'Guide was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class GuidesController < ApplicationController
 
   def update
     if @guide.update(guide_params)
-      redirect_to @guide
+      redirect_to @guide, notice: 'Guide was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class GuidesController < ApplicationController
 
   def destroy
     @guide.destroy
-    redirect_to guides_path # TODO: check this path
+    redirect_to guides_path , notice: 'Guide was successfully destroyed.'
   end
 
   private
