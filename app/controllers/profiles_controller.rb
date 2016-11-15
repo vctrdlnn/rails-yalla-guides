@@ -1,4 +1,7 @@
 class ProfilesController < ApplicationController
+  before_action :set_user, only: [:show]
+  before_action :set_profile, only: [:show, :edit]
+
   def show
   end
 
@@ -17,7 +20,6 @@ class ProfilesController < ApplicationController
   end
 
   def edit
-    @profile = Profile.find_by user_id: current_user.id
     @attributes = Profile.attribute_names - %w(id user_id created_at updated_at)
   end
 
@@ -25,5 +27,11 @@ class ProfilesController < ApplicationController
 
   def guide_params
     params.require(:profile).permit(:role, :user_id)
+  end
+  def set_user
+    @user = User.find(current_user.id)
+  end
+  def set_profile
+    @profile = @user.profiles.first
   end
 end
