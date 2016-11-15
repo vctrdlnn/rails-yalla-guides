@@ -6,21 +6,20 @@
     </div>
 
     <% if user_signed_in? %>
-      <div class="collapse navbar-collapse" id="navcol-2">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle">Mon profil<span class="caret"></span></a>
-            <ul role="menu" class="dropdown-menu">
-              <li role="presentation"><a href="#">Mes informations</a></li>
-              <li role="presentation"><a href="#">Mes réservations</a></li>
-              <li role="presentation"><%= link_to("Déconnexion", destroy_user_session_path, method: :delete) %></li>
-            </ul>
-          </li>
-        </ul>
-    </div>
+      <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="nav navbar-nav navbar-right btn btn-primary">
+            <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle">Mon profil<span class="caret"></span></a>
+                <ul role="menu" class="dropdown-menu">
+                  <li role="presentation"><a href="#">Mes informations</a></li>
+                  <li role="presentation"><a href="#">Mes réservations</a></li>
+                </ul>
+              </li>
+          </ul>
+      </div>
 
     <% else %>
       <div class="collapse navbar-collapse" id="navcol-1">
-        <p class="navbar-text navbar-right actions">
+        <p class="navbar-text navbar-right actions ">
           <%= link_to("sign in", new_user_session_path, class: "navbar-link login") %>
           <%= link_to("sign up", new_user_registration_path, class: "btn btn-primary action-button", role: "button") %>
         </p>
@@ -28,6 +27,8 @@
     <% end %>
   </div>
 </nav>
+
+
 
 
 
