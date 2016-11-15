@@ -1,12 +1,43 @@
-<div class="wrapper">
-  <div class="page-header">
-    <h2>
-      <%= "Welcome #{@user.first_name} #{@user.last_name}" %>
-    </h2>
-    <p>
-      <%= "Are you ready to #{@profile.role}" %>
-    </p>
+<h2>
+  <%= "Welcome #{@user.first_name} #{@user.last_name}" %>
+</h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4 col-sm-3">
+      <nav class="nav-sidebar">
+        <ul class="nav tabs">
+          <li class="active"><a href="#tab1" data-toggle="tab">My bookings</a></li>
+          <li class=""><a href="#tab2" data-toggle="tab">My tours</a></li>
+          <li class=""><a href="#tab3" data-toggle="tab">Edit my account</a></li>
+        </ul>
+      </nav>
+    </div>
+    <!-- tab content -->
+    <div class="col-xs-8 col-sm-9">
+      <div class="tab-content">
+        <div class="tab-pane active text-style" id="tab1">
+          <%= render 'bookings/cards' %>
+        </div>
+        <div class="tab-pane text-style" id="tab2">
+          <%= render 'guides/cards' %>
+        </div>
+        <div class="tab-pane text-style" id="tab3">
+          <%= render 'form_user' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
 <%= link_to 'Back', root_path %>
+
+
+
+<% content_for :js do %>
+<script>
+
+</script>
+<% end %>

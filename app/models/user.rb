@@ -5,8 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :profiles, dependent: :destroy
-  accepts_nested_attributes_for :profiles
+  has_one :profile, dependent: :destroy
+  accepts_nested_attributes_for :profile
+  after_create :profile
 
   def profile
     super || build_profile
@@ -28,8 +29,6 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]  # Fake password for validation
       user.save
     end
-
     return user
   end
-
 end
