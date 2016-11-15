@@ -1,0 +1,16 @@
+.card {
+  height: 250px;
+  width: 250px;
+  background-repeat: none;
+  position: relative;
+  &:hover{
+    opacity: 0.85;
+  }
+}
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
