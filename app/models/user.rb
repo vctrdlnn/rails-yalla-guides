@@ -5,4 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :profiles, dependent: :destroy
+  accepts_nested_attributes_for :profiles
+
+  def profile
+    super || build_profile
+  end
 end
