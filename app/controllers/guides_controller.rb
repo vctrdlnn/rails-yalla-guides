@@ -44,7 +44,7 @@ class GuidesController < ApplicationController
   private
 
   def set_profile
-    @profile = current_user.profiles.where(role: 'host').first
+    @profile = current_user.profile
   end
 
   def set_guide
