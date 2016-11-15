@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
   def create
     @review = @booking.reviews.build(review_params)
     if review.save
-      redirect_to @booking
+      redirect_to @booking, notice: 'Review was successfully created.'
     else
       render :new
     end
@@ -27,9 +27,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review = @booking.reviews.build(review_params)
-    if review.update
-      redirect_to @booking
+    if review.update(review_params)
+      redirect_to @booking, notice: 'Review was successfully updated.'
     else
       render :edit
     end
@@ -37,7 +36,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    redirect_to @booking
+    redirect_to @booking, notice: 'Review was successfully destroyed.'
   end
 
   private
