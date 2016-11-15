@@ -1,14 +1,18 @@
-<%= render 'shared/navbarfixed' %>
-
 <div id="banner">
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-8 col-lg-offset-2 text-center">
-        <%= simple_form_for :search, html: {class: 'form-inline'} do |f| %>
-          <%= f.input :location , label: false , placeholder: 'où?'%>
-          <%= f.input :date , label: false , placeholder: 'quand?' %>
-          <%= f.submit "c'est parti!", class: 'btn btn-primary' %>
-        <% end %>
+          <div class="banner-form">
+            <form action="guides" class="form-inline">
+              <div class="form-group">
+                <label class="sr-only" for="search_guides_city">City</label>
+                <input type="text" class="form-control input-lg" id="search_guides_city" placeholder="Ou?">
+                <label class="sr-only" for="search_guides_date">Date</label>
+                <input type="text" class="form-control input-lg" id="search_guides_date" placeholder="Quand?">
+              </div>
+              <button type="submit" class="btn btn-primary btn-lg">Find!</button>
+            </form>
+          </div>
       </div>
     </div>
   </div>
