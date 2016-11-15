@@ -16,7 +16,7 @@ class GuidesController < ApplicationController
 
   def create
     @guide = Guide.new(guide_params)
-    @guide.profile_id = 1
+    @guide.profile_id = @profile.id
     if @guide.save
       redirect_to @guide
     else
@@ -44,7 +44,7 @@ class GuidesController < ApplicationController
   private
 
   def set_profile
-    current_user.profiles.where(role: 'host').first
+    @profile = current_user.profiles.where(role: 'host').first
   end
 
   def set_guide

@@ -13,3 +13,29 @@
   bottom: 0;
   width: 100%;
 }
+
+.card{
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+  background-color: #D5E0E3;
+  border-radius: 10px;
+  p{
+    padding-top: 20px;
+    font-family: 'Alice';
+    font-size: 18px;
+    text-decoration: overline;
+  }
+}
+
+.card-price{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.card-name{
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
