@@ -1,44 +1,44 @@
 class BookingsController < ApplicationController
   before_action :set_guide, only: [:new, :create, :index]
-  before_action :set_profile, only: [:new, :edit]
-  before_action :set_booking, only: [:destroy]
+  before_action :set_profile, only: [:new, :create, :edit]
+  before_action :set_booking, only: [:destroy, :show]
 
   def index
-    @guides = Guide.all
+    @bookings = Booking.all
   end
 
   def show
-    @booking = Booking.new
   end
 
   def new
-    @guide = Guide.new
+    @booking = Booking.new
   end
 
   def edit
   end
 
   def create
-    @guide = Guide.new(guide_params)
-
-    if @guide.save
-      redirect_to @guide, notice: 'Guide was successfully created.' }
+    @booking = @guide.bookings.build(booking_params)
+    @booking.profile_id = @profile.id
+    @booking.status_id = Status.find_by_code(10).id
+    if @booking.save
+      redirect_to guide_booking_path(@guide, @booking), notice: 'Booking was successfully created.'
     else
       render :new
     end
   end
 
   def update
-    if @guide.update(guide_params)
-      redirect_to @guide, notice: 'Guide was successfully updated.'
+    if @booking.update(booking_params)
+      redirect_to @booking, notice: 'Booking was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    @guide.destroy
-    redirect_to guides_url, notice: 'Guide was successfully destroyed.'
+    @booking.destroy
+    redirect_to bookings_url, notice: 'Booking was successfully destroyed.'
   end
 
   private
@@ -47,10 +47,15 @@ class BookingsController < ApplicationController
     end
 
     def set_profile
-      # TODO: verifier la definition du profile
+      # TODO: Add check if host profile doesn't exist
+      @profile = Profile.where(user_id: current_user.id).where(role: "guest").first
     end
 
-    def guide_params
-      params.require(:guide).permit(:start_date, :end_date, :total_price)
+    def set_booking
+      @booking = Booking.find(params[:id])
+    end
+
+    def booking_params
+      params.require(:booking).permit(:start_date, :end_date, :total_price)
     end
 end
