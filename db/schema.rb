@@ -35,18 +35,15 @@ ActiveRecord::Schema.define(version: 20161116140228) do
     t.string   "title"
     t.text     "description"
     t.integer  "profile_id"
-    t.string   "start_address"
-    t.string   "end_address"
-    t.float    "lat_start"
-    t.float    "lon_start"
-    t.float    "lat_end"
-    t.float    "lon_end"
     t.string   "city"
     t.string   "photo"
     t.integer  "hourly_price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "category"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["profile_id"], name: "index_guides_on_profile_id", using: :btree
   end
 
