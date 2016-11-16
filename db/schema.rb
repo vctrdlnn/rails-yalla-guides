@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20161116165539) do
   add_foreign_key "guides", "profiles"
   add_foreign_key "profiles", "users"
   add_foreign_key "reviews", "bookings"
-  add_foreign_key "steps", "guides"
   add_foreign_key "status_flows", "bookings"
   add_foreign_key "status_flows", "statuses"
+  add_foreign_key "steps", "guides"
 end
