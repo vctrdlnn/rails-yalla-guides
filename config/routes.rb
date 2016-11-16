@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :guides do
     resources :bookings
+    resources :steps
   end
   resources :bookings, only: [:destroy]
   resources :reviews
