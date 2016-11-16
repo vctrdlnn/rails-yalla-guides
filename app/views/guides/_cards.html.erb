@@ -7,7 +7,7 @@
   <% end %>
 <% else %>
   <% @guides.each do |guide| %>
-    <div class="col-xs-12 col-sm-7">
+    <div class="col-xs-12 col-sm-6">
       <div class="card text-center">
         <%= link_to "", guide_path(guide), {class: "card-link"} %>
         <%= image_tag guide.photo, height: 200, width: 300, crop: :fill %>
