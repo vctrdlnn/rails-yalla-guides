@@ -1,8 +1,11 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: [:show]
-  before_action :set_profile, only: [:show, :edit]
+  before_action :set_user, only: [:show, :index]
+  before_action :set_profile, only: [:show, :index]
+  before_action :set_bookings, only: [:show]
+  before_action :set_guides, only: [:show]
 
   def show
+    @profile = Profile.find(params[:id])
   end
 
   def new
@@ -28,10 +31,20 @@ class ProfilesController < ApplicationController
   def guide_params
     params.require(:profile).permit(:role, :user_id)
   end
+
   def set_user
     @user = User.find(current_user.id)
   end
+
   def set_profile
-    @profile = @user.profiles.first
+    @profile = @user.profile
+  end
+
+  def set_bookings
+    @bookings = @profile.bookings
+  end
+
+  def set_guides
+    @guides = @profile.guides
   end
 end

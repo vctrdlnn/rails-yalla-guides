@@ -3,35 +3,6 @@
 
   <div class="container">
     <div class="row">
-
-      <% @bookings.each do |booking| %>
-
-
-          <div class="col-xs-12 col-sm-6 col-md-3">
-            <div class="card">
-              <div class="card-category">
-                <%= booking.status.title %>
-              </div>
-              <div class="card-description">
-                <h2><%= booking.guide.title %></h2>
-                <p>
-                  <%= "#{booking.start_date} - #{booking.end_date}" %>
-                </p>
-                <p>
-                  <%= link_to edit_guide_path(booking.guide) do %>
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
-                  <% end %> |
-                  <%= link_to booking, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                  <% end %>
-                </p>
-              </div>
-              <div class="card-thumbnail">
-
-              </div>
-              <%= link_to "", booking, {class: "card-link"} %>
-            </div>
-          </div>
-        <% end %>
+      <%= render 'cards' %>
     </div>
   </div>

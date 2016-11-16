@@ -34,3 +34,15 @@ gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
 gem 'devise'
 gem 'omniauth-facebook'
+
+gem 'simple-form-datepicker'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
+
+gem "geocoder"
+gem "coffee-rails"
+gem "gmaps4rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end

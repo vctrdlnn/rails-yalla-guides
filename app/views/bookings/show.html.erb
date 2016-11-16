@@ -4,3 +4,7 @@
   <%= "You have a booking with #{@booking.guide.title} on #{@booking.start_date}"%>
   <%= "Status: #{@booking.status.title}"%>
 </p>
+
+<%= link_to current_user.profile do %>
+  <button type="button" class="btn btn-primary">See all my bookings</button>
+<% end %>

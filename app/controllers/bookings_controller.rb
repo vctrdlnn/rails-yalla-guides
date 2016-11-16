@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
     @booking = @guide.bookings.build(booking_params)
     @booking.profile_id = @profile.id
     @booking.status_id = Status.find_by_code(10).id
+    @booking.end_date = @booking.start_date + @booking.days
     if @booking.save
       redirect_to guide_booking_path(@guide, @booking), notice: 'Booking was successfully created.'
     else
@@ -38,7 +39,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to bookings_url, notice: 'Booking was successfully destroyed.'
+    redirect_to :back, notice: 'Booking was successfully destroyed.'
   end
 
   private
@@ -56,6 +57,6 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:start_date, :end_date, :total_price)
+      params.require(:booking).permit(:start_date, :end_date, :days, :meeting_time, :total_price)
     end
 end

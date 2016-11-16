@@ -1,22 +1,13 @@
 .btn {
   display:inline-block;
-  padding:6px 12px;
   margin-bottom:0;
-  font-size:14px;
   font-weight:400;
-  line-height:1.42857143;
   text-align:center;
   white-space:nowrap;
   vertical-align:middle;
-  -ms-touch-action:manipulation;
-  touch-action:manipulation;
-  cursor:pointer;
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
   user-select:none;
   border:1px solid transparent;
-  border-radius:4px;
+  color: white;
 }
 
 a.navbar-link{
@@ -34,3 +25,41 @@ a.navbar-link{
    border-bottom: 0px;
    height: 62px;
 }
+
+.navbar-nav > li > a {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.navbar-transparent .navbar-nav > li > a:hover,
+.navbar-transparent .navbar-nav > li > a:active,
+.navbar-transparent .navbar-nav > li > a:focus,
+.navbar-transparent .navbar-nav > .open > a,
+.navbar-transparent .navbar-nav > .open > a:hover,
+.navbar-transparent .navbar-nav > .open > a:focus {
+  background-color: $rasberry;
+  color: white;
+  border: none;
+}
+
+
+.navbar ul{
+  margin-top: 12px;
+  background-color: $rasberry;
+  border-color: none;
+  border: none;
+  border-radius: 3px;
+}
+
+.dropdown-menu > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.4;
+    color: white;
+    white-space: nowrap;
+}
+
+
+

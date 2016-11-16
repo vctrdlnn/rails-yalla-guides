@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :bookings
   end
   resources :bookings, only: [:destroy]
-
+  resources :reviews
   resources :profiles
 
   devise_for :users,
