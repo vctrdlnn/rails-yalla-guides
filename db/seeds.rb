@@ -9,6 +9,7 @@
 statuses_base = [
   {code: "10", title: "Pending payment"},
   {code: "15", title: "Payment confirmed"},
+  {code: "19", title: "Payment overdue"},
   {code: "20", title: "Pending guide confirmation"},
   {code: "25", title: "Confirmed by guide"},
   {code: "29", title: "Rejected by guide"},

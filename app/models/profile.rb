@@ -5,4 +5,8 @@ class Profile < ApplicationRecord
   has_many :guides
 
   validates :role, presence: true, inclusion: { in: %w(host guest admin) }
+
+  def pending_confirmations
+    fail
+  end
 end

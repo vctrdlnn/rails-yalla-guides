@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
 
   resources :guides do
-    resources :bookings
+    resources :bookings do
+      member do
+        get 'payment'
+        patch 'payment', to: 'bookings#process_payment'
+      end
+    end
   end
   resources :bookings, only: [:destroy]
   resources :reviews
