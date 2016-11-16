@@ -68,7 +68,7 @@ class BookingsController < ApplicationController
 
   def set_profile
     # TODO: Add check if host profile doesn't exist
-    @profile = Profile.where(user_id: current_user.id)
+    @profile = Profile.find_by(user_id: current_user.id)
   end
 
   def set_booking

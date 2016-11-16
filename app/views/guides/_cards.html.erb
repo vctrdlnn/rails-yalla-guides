@@ -12,7 +12,7 @@
         <%= link_to "", guide_path(guide), {class: "card-link"} %>
         <%= image_tag guide.photo, height: 200, width: 300, crop: :fill %>
         <div class="card-name"><%= guide.profile.user.first_name %></div>
-        <div class="card-price"><%= '€' + guide.hourly_price.to_s + '/hour'%></div>
+        <div class="card-price"><%= '€' + guide.daily_price.to_s + '/day'%></div>
         <div class="row">
           <div class="col-xs-12 col-lg-6">
             <div class="card-review"><%= 'the reviews here' %></div>
