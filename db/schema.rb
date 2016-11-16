@@ -21,14 +21,13 @@ ActiveRecord::Schema.define(version: 20161116165539) do
     t.integer  "total_price"
     t.integer  "guide_id"
     t.integer  "profile_id"
-    t.integer  "status_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.time     "meeting_time"
     t.integer  "days"
+    t.integer  "amount_paid"
     t.index ["guide_id"], name: "index_bookings_on_guide_id", using: :btree
     t.index ["profile_id"], name: "index_bookings_on_profile_id", using: :btree
-    t.index ["status_id"], name: "index_bookings_on_status_id", using: :btree
   end
 
   create_table "guides", force: :cascade do |t|
@@ -62,6 +61,15 @@ ActiveRecord::Schema.define(version: 20161116165539) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
+  end
+
+  create_table "status_flows", force: :cascade do |t|
+    t.integer  "booking_id"
+    t.integer  "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_status_flows_on_booking_id", using: :btree
+    t.index ["status_id"], name: "index_status_flows_on_status_id", using: :btree
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -111,9 +119,10 @@ ActiveRecord::Schema.define(version: 20161116165539) do
 
   add_foreign_key "bookings", "guides"
   add_foreign_key "bookings", "profiles"
-  add_foreign_key "bookings", "statuses"
   add_foreign_key "guides", "profiles"
   add_foreign_key "profiles", "users"
   add_foreign_key "reviews", "bookings"
   add_foreign_key "steps", "guides"
+  add_foreign_key "status_flows", "bookings"
+  add_foreign_key "status_flows", "statuses"
 end
