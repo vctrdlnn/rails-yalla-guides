@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161115162900) do
+ActiveRecord::Schema.define(version: 20161116110105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,18 +33,15 @@ ActiveRecord::Schema.define(version: 20161115162900) do
     t.string   "title"
     t.text     "description"
     t.integer  "profile_id"
-    t.string   "start_address"
-    t.string   "end_address"
-    t.float    "lat_start"
-    t.float    "lon_start"
-    t.float    "lat_end"
-    t.float    "lon_end"
     t.string   "city"
     t.string   "photo"
     t.integer  "hourly_price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.string   "category"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["profile_id"], name: "index_guides_on_profile_id", using: :btree
   end
 
