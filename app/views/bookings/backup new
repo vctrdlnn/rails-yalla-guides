@@ -6,9 +6,9 @@
         <%= f.error_notification %>
 
         <div class="form-inputs date">
-          <%= f.input :start_date, as: :string, label: "Book from ", input_html: { :style => 'width: 120px; padding-right: 0px; margin-right: 5px;' } %>
+          <%= f.input :start_date, as: :datepicker, label: "Book from ", input_html: { :style => 'width: 100px' } %>
           <%= f.input :days, label: " for ", input_html: { value: '1', style: 'width: 40px; padding-right: 0px; margin-right: 5px;' } %>
-          <%= f.input :meeting_time, as: :string, label: " days, starting at", input_html: { value: '10:00 am', style: 'width: 80px; padding-right: 0px; margin-right: 5px;' } %>
+          <%= f.input :meeting_time, as: :datepicker, label: " days, starting at", input_html: { value: '10:00 am', style: 'width: 80px' } %>
         </div>
 
         <div class="form-actions">
@@ -21,7 +21,7 @@
 <% content_for (:js) do %>
   <script>
     $('#booking_start_date').datetimepicker({
-      format: 'DD MMM YYYY'
+      format: 'DD MMM'
     });
     $('#booking_meeting_time').datetimepicker({
       format: 'HH:mm'

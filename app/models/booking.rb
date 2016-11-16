@@ -5,7 +5,7 @@ class Booking < ApplicationRecord
   has_many :reviews
 
   validates :start_date, presence: true
-  validates :end_date, presence: true
+  validates :days, inclusion: { in: 1..10 }
   validates :guide, presence: true
   validates :profile, presence: true
 end

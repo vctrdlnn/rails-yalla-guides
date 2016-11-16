@@ -34,3 +34,9 @@ gem 'cloudinary', '1.1.0'
 gem 'carrierwave'
 gem 'devise'
 gem 'omniauth-facebook'
+
+gem 'backbone-on-rails'
+gem "jquery-ui-rails"
+gem 'simple-form-datepicker'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
