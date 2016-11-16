@@ -8,7 +8,7 @@ class Guide < ApplicationRecord
   validates :address, presence: true
   validates :city, presence: true
   validates :photo, presence: true
-  validates :hourly_price, presence: true
+  validates :daily_price, presence: true
   validates :category, presence: true
 
   geocoded_by :address
