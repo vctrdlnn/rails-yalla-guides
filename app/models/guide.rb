@@ -1,6 +1,7 @@
 class Guide < ApplicationRecord
   belongs_to :profile
   has_many :bookings
+  has_many :steps
   mount_uploader :photo, PhotoUploader
 
   validates :title, presence: true

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :guides do
+    resources :steps
     resources :bookings do
       member do
         get 'payment'
