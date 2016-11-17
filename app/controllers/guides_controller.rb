@@ -12,6 +12,8 @@ class GuidesController < ApplicationController
   end
 
   def show
+    @booking = Booking.new
+
     @guide_coordinates = {lat: @guide.latitude, lon: @guide.longitude}
 
     @step = Step.new
