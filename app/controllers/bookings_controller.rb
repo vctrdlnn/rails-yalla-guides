@@ -66,7 +66,7 @@ class BookingsController < ApplicationController
   end
 
   def reject
-    @booking.set_status_confirmed
+    @booking.set_status_rejected
     redirect_to :back, alert: 'Booking was rejected!'
   end
 
