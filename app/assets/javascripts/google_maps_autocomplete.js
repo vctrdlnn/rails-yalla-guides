@@ -1,7 +1,8 @@
+console.log("before auto")
 $(document).ready(function() {
-
   // Code for 'guide address'
   var address = $('#guide_address').get(0);
+console.log("hello")
 
   if (address) {
     var autocomplete = new google.maps.places.Autocomplete(address, { types: ['geocode'] });
@@ -25,10 +26,11 @@ $(document).ready(function() {
       }
     });
   }
-
 });
 
 function onPlaceChanged() {
+console.log("hello")
+
   var place = this.getPlace();
   var components = getAddressComponents(place);
 
