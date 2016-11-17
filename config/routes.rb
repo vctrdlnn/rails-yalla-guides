@@ -6,12 +6,20 @@ Rails.application.routes.draw do
       member do
         get 'payment'
         patch 'payment', to: 'bookings#process_payment'
+        patch 'confirm', to: 'bookings#confirm'
+        patch 'reject', to: 'bookings#reject'
+        patch 'guide_cancel', to: 'bookings#guide_cancel'
       end
     end
   end
   resources :bookings, only: [:destroy]
   resources :reviews
-  resources :profiles
+  resources :profiles do
+    member do
+      get 'guide'
+    end
+
+  end
 
   devise_for :users,
     controllers: {

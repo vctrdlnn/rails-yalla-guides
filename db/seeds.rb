@@ -14,6 +14,7 @@ statuses_base = [
   {code: "25", title: "Confirmed by guide"},
   {code: "29", title: "Rejected by guide"},
   {code: "39", title: "Cancelled by guest"},
+  {code: "49", title: "Cancelled by guide"}
 ]
 statuses_base.each do |status|
   Status.new(status).save

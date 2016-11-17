@@ -1,0 +1,53 @@
+.cardbooking {
+  height: 100px;
+  width: 100%;
+  background-size: cover !important;
+  background-position: center;
+  position: relative;
+  margin: 10px 0;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
+.cardbooking-thumbnail {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.cardbooking-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.cardbooking-action {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.cardbooking-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.cardbooking-description h3 {
+  font-size: 18px;
+}
+.cardbooking-description p {
+  font-size: 13px;
+  }
+.cardbooking-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.cardbooking-link:hover{
+  opacity: 0.1;
+}
