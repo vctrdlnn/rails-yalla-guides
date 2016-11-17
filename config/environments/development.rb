@@ -57,6 +57,7 @@ Rails.application.configure do
   # in config/environments/development.rb
   # In production, :host should be set to the actual host of your application.
   # TODO: VERIFY IT'S THERE ??
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 end

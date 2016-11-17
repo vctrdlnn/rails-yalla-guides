@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   // Code for 'guide address'
   var address = $('#guide_address').get(0);
 
@@ -25,10 +24,11 @@ $(document).ready(function() {
       }
     });
   }
-
 });
 
 function onPlaceChanged() {
+console.log("hello")
+
   var place = this.getPlace();
   var components = getAddressComponents(place);
 
