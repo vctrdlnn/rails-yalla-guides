@@ -1,17 +1,69 @@
-<% if @guide[:photo] %>
-  <%= cl_image_tag @guide.photo, height: 150, width: 150, crop: :fill , class: "guide-photo"%>
-<% end %>
-<h2><%= @guide.title %></h2>
-<h3><%= @guide.city %></h3>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <% if @guide[:photo] %>
+        <%= cl_image_tag @guide.photo, height: 150, width: 150, crop: :fill , class: "guide-photo"%>
+      <% end %>
+      <p><%= @guide.profile.user.first_name %></p>
+      <p><%= @guide.title %></p>
+      <p><%= @guide.city %></p>
 
-<p><%= @guide.description %></p>
-<p><%= "at #{@guide.address}" %></p>
-<p><%= "What to expect: #{@guide.category}" %></p>
-<p><%= "#{@guide.daily_price} Eur/day" %></p>
+      <p><%= @guide.description %></p>
+      <p><%= "at #{@guide.address}" %></p>
+      <p><%= "What to expect: #{@guide.category}" %></p>
+      <p><%= "#{@guide.daily_price} Eur/day" %></p>
 
-<%= link_to guides_path do %>
-  <button type="button" class="btn btn-primary">Back</button>
-<% end %>
-<%= link_to new_guide_booking_path(@guide) do %>
-  <button type="button" class="btn btn-primary">Book now !!!</button>
-<% end %>
+      <%= link_to guides_path do %>
+        <button type="button" class="btn btn-primary">Back</button>
+      <% end %>
+      <%= link_to new_guide_booking_path(@guide) do %>
+        <button type="button" class="btn btn-primary">Book now !!!</button>
+      <% end %>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+      <h3>The perfect plan</h3>
+      <table class="table table-hover">
+          <colgroup>
+            <col>
+            <col class="align-right">
+          </colgroup>
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Establishment</th>
+            <th>Delete?</th>
+          </tr>
+        </thead>
+        <tfoot>
+          <%= simple_form_for [@guide, @step] do |f| %>
+            <tr class="warning">
+              <td>
+                <%= f.input :title, label: false, placeholder: 'Step' %>
+              </td>
+              <td>
+                <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
+              </td>
+              <td>
+                <%= f.button :submit, "Add", class: "btn btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tfoot>
+        <tbody>
+         <% @guide.steps.each do |step| %>
+            <tr>
+              <td class="text-left"><%= step.title %></td>
+              <td class="text-right"><%= step.establishment %></td>
+              <td class="text-right">
+                <%= link_to guide_step_path(@guide, step) , method: :delete, data: {confirm: "are you sure ?"} do %>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

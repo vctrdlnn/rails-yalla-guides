@@ -13,6 +13,7 @@ class GuidesController < ApplicationController
 
   def show
     @guide_coordinates = {lat: @guide.latitude, lon: @guide.longitude}
+    @step = Step.new
   end
 
   def new

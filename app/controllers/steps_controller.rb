@@ -7,6 +7,7 @@ class StepsController < ApplicationController
   end
 
   def show
+    # @step_coordinates = { lat: @step.latitude, lng: @step.longitude }
   end
 
   def new
@@ -20,15 +21,15 @@ class StepsController < ApplicationController
   def create
     @step = @guide.steps.build(step_params)
     if @step.save
-      redirect_to @guide, notice: 'Step was successfully created.'
+      redirect_to guide_path(@guide), notice: 'Step was successfully created.'
     else
-      render :new
+      redirect_to guide_path(@guide), alert: 'Step was not created.'
     end
   end
 
   def update
     if @step.update(step_params)
-      redirect_to @guide, notice: 'Step was successfully updated.'
+      redirect_to guide_path(@guide), notice: 'Step was successfully updated.'
     else
       render :edit
     end
