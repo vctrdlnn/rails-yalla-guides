@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_guide, only: [:new, :create, :index, :process_payment]
   before_action :set_profile, only: [:new, :create, :edit]
-  before_action :set_booking
+  before_action :set_booking, except: [:index, :new, :create]
   before_action :set_status_flow, only: [:show]
   before_action :check_status, only: [:show, :edit]
 
@@ -17,7 +17,6 @@ class BookingsController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
