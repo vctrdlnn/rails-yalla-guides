@@ -10,41 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114211456) do
+ActiveRecord::Schema.define(version: 20161116165539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.date     "start_date"
+    t.date     "end_date"
     t.integer  "total_price"
     t.integer  "guide_id"
     t.integer  "profile_id"
-    t.integer  "status_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.time     "meeting_time"
+    t.integer  "days"
+    t.integer  "amount_paid"
     t.index ["guide_id"], name: "index_bookings_on_guide_id", using: :btree
     t.index ["profile_id"], name: "index_bookings_on_profile_id", using: :btree
-    t.index ["status_id"], name: "index_bookings_on_status_id", using: :btree
   end
 
   create_table "guides", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "profile_id"
-    t.string   "start_address"
-    t.string   "end_address"
-    t.float    "lat_start"
-    t.float    "lon_start"
-    t.float    "lat_end"
-    t.float    "lon_end"
     t.string   "city"
     t.string   "photo"
-    t.integer  "hourly_price"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "daily_price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "category"
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
     t.index ["profile_id"], name: "index_guides_on_profile_id", using: :btree
   end
 
@@ -56,11 +54,42 @@ ActiveRecord::Schema.define(version: 20161114211456) do
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "rating"
+    t.integer  "booking_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id", using: :btree
+  end
+
+  create_table "status_flows", force: :cascade do |t|
+    t.integer  "booking_id"
+    t.integer  "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_status_flows_on_booking_id", using: :btree
+    t.index ["status_id"], name: "index_status_flows_on_status_id", using: :btree
+  end
+
   create_table "statuses", force: :cascade do |t|
     t.integer  "code"
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "steps", force: :cascade do |t|
+    t.string   "title"
+    t.string   "establishment"
+    t.string   "address"
+    t.string   "city"
+    t.float    "longitude"
+    t.float    "latitude"
+    t.integer  "guide_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["guide_id"], name: "index_steps_on_guide_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,13 +108,21 @@ ActiveRecord::Schema.define(version: 20161114211456) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "mobile"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "facebook_picture_url"
+    t.string   "token"
+    t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "bookings", "guides"
   add_foreign_key "bookings", "profiles"
-  add_foreign_key "bookings", "statuses"
   add_foreign_key "guides", "profiles"
   add_foreign_key "profiles", "users"
+  add_foreign_key "reviews", "bookings"
+  add_foreign_key "status_flows", "bookings"
+  add_foreign_key "status_flows", "statuses"
+  add_foreign_key "steps", "guides"
 end

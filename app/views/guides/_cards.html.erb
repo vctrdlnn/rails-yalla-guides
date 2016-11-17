@@ -1,0 +1,22 @@
+<% if @guides.empty? %>
+  <h2>No tours yet!</h2>
+  <%= link_to new_guide_path do %>
+    <button type="button" class="btn btn-success btn-lg">
+      Propose a tour in your city now!
+    </button>
+  <% end %>
+<% else %>
+  <% @guides.each do |guide| %>
+    <div class="col-xs-12 col-sm-6">
+      <div class="card">
+        <%= link_to "", guide_path(guide), {class: "card-link"} %>
+        <%= image_tag guide.photo, height: 200, width: 300, crop: :fill %>
+        <div class="card-price"><strong><%= '€' + guide.daily_price.to_s + '/day'%></strong></div>
+        <div class="card-name"><i><%= guide.profile.user.first_name %><%= ', guide ' + guide.title %></i></div>
+        <div class="card-review text-left"><%= 'the reviews here' %></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+

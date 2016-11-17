@@ -1,19 +1,30 @@
-<h1>Bookings#new</h1>
+<h1>New booking</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
+<div class="container">
+    <div class="col-xs-12 col-sm-12">
+      <%= simple_form_for [@guide, @booking], html: { :class => "form-inline" } do |f| %>
+        <%= f.error_notification %>
 
-<%= simple_form_for [@guide, @profile , @booking] do |f| %>
-  <%= f.error_notification %>
+        <div class="form-inputs date">
+          <%= f.input :start_date, as: :string, label: "Book from ", input_html: { :style => 'width: 120px; padding-right: 0px; margin-right: 5px;' } %>
+          <%= f.input :days, label: " for ", input_html: { value: '1', style: 'width: 40px; padding-right: 0px; margin-right: 5px;' } %>
+          <%= f.input :meeting_time, as: :string, label: " days, starting at", input_html: { value: '10:00 am', style: 'width: 80px; padding-right: 0px; margin-right: 5px;' } %>
+        </div>
 
-  <div class="form-inputs">
-
-    <%= f.input :description %>
+        <div class="form-actions">
+          <%= f.button :submit %>
+        </div>
+      <% end %>
   </div>
+</div>
 
-  <div class="display-ingredients">
-
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<% content_for (:js) do %>
+  <script>
+    $('#booking_start_date').datetimepicker({
+      format: 'DD MMM YYYY'
+    });
+    $('#booking_meeting_time').datetimepicker({
+      format: 'HH:mm'
+    });
+  </script>
 <% end %>

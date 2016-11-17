@@ -1,0 +1,27 @@
+/* https://github.com/BlackrockDigital/startbootstrap-simple-sidebar */
+
+// http://bootsnipp.com/snippets/featured/sidebar-with-tabs
+.nav-sidebar {
+    width: 100%;
+    padding: 30px 0;
+    border-right: 1px solid #ddd;
+}
+.nav-sidebar a {
+    color: #333;
+    transition: all 0.08s linear;
+}
+.nav-sidebar .active a {
+    cursor: default;
+    background-color: #0b56a8;
+    color: #fff;
+}
+.nav-sidebar .active a:hover {
+    background-color: #E50000;
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}

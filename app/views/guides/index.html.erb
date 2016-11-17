@@ -1,2 +1,45 @@
-<h1>Guides#index</h1>
-<p>Find me in app/views/guides/index.html.erb</p>
+<div class="min-padded"></div>
+<div class="wrapper">
+  <div class="container text-center">
+    <h2>Pick your guide</h2>
+    <div class="min-padded"></div>
+    <% if current_user.profile != nil %>
+      <%= link_to new_guide_path(@guide) do %>
+        <button type="button" class="btn btn-primary">Create your guide</button>
+      <% end %>
+    <% end %>
+    <div class="padded"></div>
+    <div class="row text-center">
+      <div class="col-xs-12 col-sm-7 scroll">
+        <div class="row">
+          <%= render 'cards' %>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-5">
+        <div class="container-map">
+          <div id="map" style="width: 100%; height: 500px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="min-padded"></div>
+
+
+<% content_for(:js) do %>
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
+<% end %>

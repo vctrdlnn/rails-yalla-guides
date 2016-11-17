@@ -6,6 +6,11 @@
   margin: 0;
   text-align: center;
   color: white;
+  position: absolute;
+  top: 62px;
+  width: 100%;
+  border: none;
+  border-radius: 0;
 }
 .alert-info {
   background: $green;

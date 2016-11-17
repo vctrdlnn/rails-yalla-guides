@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <div class="page-header">
+    <h2>
+      <%= "Welcome #{@user.first_name}" %>
+    </h2>
+    <p>How do you want to continue on the site ?</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <% if @guest_profile %>
+          <%= link_to profile_path(@guest_profile) do %>
+            <button type="button" class="btn btn-success btn-lg">
+              Continue as visitor
+            </button>
+          <% end %>
+        <% else %>
+          <%= link_to new_profile_path do %>
+            <button type="button" class="btn btn-info btn-lg">
+              Become visitor
+            </button>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <% if @host_profile %>
+          <%= link_to profile_path(@host_profile) do %>
+            <button type="button" class="btn btn-success btn-lg">
+              Continue as guide
+            </button>
+          <% end %>
+        <% else %>
+          <%= link_to new_profile_path do %>
+            <button type="button" class="btn btn-info btn-lg">
+              Become guide
+            </button>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

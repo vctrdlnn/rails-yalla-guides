@@ -1,0 +1,39 @@
+.card {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  &:hover{
+    opacity: 0.85;
+  }
+}
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.card{
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+  background-color: white;
+  border-radius: 10px;
+  p{
+    padding-top: 20px;
+    font-family: 'Alice';
+    font-size: 18px;
+    text-decoration: overline;
+  }
+}
+
+.card-price ,.card-name ,.card-review {
+  padding-top: 5px;
+}
+
+.card-name{
+  font-weight: lighter
+}
+
+
