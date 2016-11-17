@@ -43,6 +43,9 @@
               </td>
               <td>
                 <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
+                <%= f.input :address, as: :hidden, label: false %>
+                <%= f.input :city, as: :hidden, label: false %>
+                <%= f.input :category, as: :hidden, label: false %>
               </td>
               <td>
                 <%= f.button :submit, "Add", class: "btn btn-primary" %>
@@ -65,5 +68,31 @@
         </tbody>
       </table>
     </div>
+
+    <div class="col-xs-12 col-sm-12">
+      <div class="container-map">
+        <div id="map" style="width: 100%; height: 500px;"></div>
+      </div>
+    </div>
+
   </div>
 </div>
+
+
+<% content_for(:js) do %>
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+    });
+  </script>
+<% end %>

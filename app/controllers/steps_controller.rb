@@ -3,7 +3,7 @@ class StepsController < ApplicationController
   before_action :set_guide, only: [:new, :create, :edit, :update]
 
   def index
-    @steps = Step.all
+    @steps = Step.where.not(latitude: nil, longitude: nil)
   end
 
   def show
@@ -43,7 +43,7 @@ class StepsController < ApplicationController
   private
 
   def step_params
-    params.require(:step).permit(:title, :establishment, :address, :city, :guide_id)
+    params.require(:step).permit(:title, :establishment, :address, :city, :guide_id, :category)
   end
 
   def set_step
