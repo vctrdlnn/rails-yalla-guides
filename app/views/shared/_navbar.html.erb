@@ -11,6 +11,7 @@
             <a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle btn btn-primary" style="color:white">Mon profil<span class="caret"></span></a>
             <ul role="menu" class="dropdown-menu">
               <li role="presentation"><%= link_to("Mon profil", current_user.profile)%></li>
+              <li role="presentation"><%= link_to("Guide dashboard", guide_profile_path(current_user.profile))%></li>
               <li role="presentation"><%= link_to("Déconnexion", destroy_user_session_path, method: :delete) %></li>
             </ul>
           </li>

@@ -4,7 +4,6 @@
 
 <p>Amount due: <%= (@booking.total_price - @booking.amount_paid) %></p>
 
-
 <%= form_for @booking, url: {action: "payment"}, html: { :class => "form-inline" } do |f| %>
   <%= f.label :amount_paid %>
   <%= f.text_field :amount_paid %>

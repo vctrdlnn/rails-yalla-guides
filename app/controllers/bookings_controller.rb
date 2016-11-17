@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_guide, only: [:new, :create, :index, :process_payment]
   before_action :set_profile, only: [:new, :create, :edit]
-  before_action :set_booking, only: [:destroy, :show, :payment, :process_payment]
+  before_action :set_booking, except: [:index, :new, :create]
   before_action :set_status_flow, only: [:show]
   before_action :check_status, only: [:show, :edit]
 
@@ -17,7 +17,6 @@ class BookingsController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
@@ -55,10 +54,25 @@ class BookingsController < ApplicationController
     if @booking.update(payment_params)
       @booking.set_status_payment_confirmed
       @booking.set_status_pending_confirmation
-      redirect_to guide_booking_path(@guide, @booking), notice: 'Booking was successfully created.'
+      redirect_to guide_booking_path(@guide, @booking), notice: 'Booking paid!'
     else
       render :new
     end
+  end
+
+  def confirm
+    @booking.set_status_confirmed
+    redirect_to :back, notice: 'Booking was confirmed, thank you!'
+  end
+
+  def reject
+    @booking.set_status_rejected
+    redirect_to :back, alert: 'Booking was rejected!'
+  end
+
+  def guide_cancel
+    @booking.set_status_cancelled_by_guide
+    redirect_to :back, alert: 'Booking was cancelled, fees might apply!'
   end
 
   private

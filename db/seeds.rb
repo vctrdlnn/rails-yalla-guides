@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Status.destroy_all
+
 statuses_base = [
   {code: "10", title: "Pending payment"},
   {code: "15", title: "Payment confirmed"},
@@ -14,6 +16,7 @@ statuses_base = [
   {code: "25", title: "Confirmed by guide"},
   {code: "29", title: "Rejected by guide"},
   {code: "39", title: "Cancelled by guest"},
+  {code: "49", title: "Cancelled by guide"}
 ]
 statuses_base.each do |status|
   Status.new(status).save
