@@ -1,0 +1,38 @@
+.cardlisting{
+  border-radius: 9px;
+  border: #DFE8EB;
+  padding-top: 14px;
+  margin-bottom: 30px;
+  padding-bottom: 14px;
+  padding-left: 5px;
+  h2{
+    margin: 0;
+  }
+  img{
+    margin-top: 13px;
+  }
+  .col-xs-12.col-md-6{
+  border-bottom: 1px solid black;
+}
+}
+
+.cardlisting-category{
+  padding-top: 9px;
+  p{
+  margin: 2px 0 11px;
+  }
+}
+
+.cardlisting-description{
+  text-transform : uppercase;
+  letter-spacing: 3px;
+}
+
+.cardlisting-mobile{
+  padding-bottom: 6px;
+}
+
+.cardlisting-name{
+  padding-top: 7px;
+}
+

@@ -1,34 +1,62 @@
 <% if @bookings.empty? %>
   <h2>No bookings yet!</h2>
-  <%= link_to guides_path do %>
-    <button type="button" class="btn btn-success btn-lg">
-      Start booking now!
-    </button>
-  <% end %>
+    <%= link_to guides_path do %>
+      <button type="button" class="btn btn-success btn-lg">
+        Start booking now!
+      </button>
+    <% end %>
 <% else %>
-  <% @bookings.each do |booking| %>
-    <div class="col-xs-12 col-sm-6 col-md-3">
-      <div class="card">
-        <div class="card-category">
-          <%= booking.status_flows.last.status.title %>
+
+
+<% @bookings.each do |booking| %>
+  <div class="row cardlisting">
+    <div class="col-xs-12 col-md-3 text-center">
+      <%= image_tag booking.guide.photo, height: 200, width: 200, crop: :fill %>
+    </div>
+
+    <div class="col-xs-12 col-md-9">
+      <div class="row">
+        <div class="col-xs-12 col-md-6 cardlisting-description text-left">
+          <h4><%= booking.guide.title %></h4>
         </div>
-        <div class="card-description">
-          <h2><%= booking.guide.title %></h2>
-          <p>
-            <%= "#{booking.start_date} - #{booking.end_date}" %>
-          </p>
-          <p>
+        <div class="col-xs-12 col-md-6 cardlisting-category">
+          <p><i>Status: <%= booking.status_flows.last.status.title %></i></p>
+        </div>
+          <div class="col-xs-12 col-md-12 text-left cardlisting-name">
+            <p> Avec : <%= booking.guide.profile.user.first_name %></p>
+          </div>
+          <div class="col-xs-12 col-md-12 text-left">
+            <p> Date : <%= "#{booking.start_date} - #{booking.end_date}" %></p>
+          </div>
+          <div class="col-xs-12 col-md-12 text-left">
+            <p> Price : <%= booking.total_price %> €</p>
+          </div>
+          <div class="col-xs-12 col-md-12 text-left cardlisting-mobile">
+            <p> Contact : <%= booking.guide.profile.user.mobile %></p>
+          </div>
+          <div class="col-xs-6 col-md-6">
             <%= link_to edit_guide_path(booking.guide) do %>
             <i class="fa fa-pencil" aria-hidden="true"></i>
-            <% end %> |
+            <% end %>
+          </div>
+          <div class="col-xs-6 col-md-6">
             <%= link_to booking, method: :delete, data: { confirm: 'Are you sure?' } do %>
             <i class="fa fa-trash" aria-hidden="true"></i>
             <% end %>
-          </p>
-        </div>
-        <div class="card-thumbnail">
-        </div>
+          </div>
       </div>
     </div>
-  <% end %>
+  </div>
 <% end %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
