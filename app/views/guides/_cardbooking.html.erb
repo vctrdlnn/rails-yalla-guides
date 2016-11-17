@@ -1,0 +1,38 @@
+<% if @guide_bookings.empty? %>
+  <h3>Noone booked your tours yet!</h3>
+<% else %>
+  <% @guide_bookings.each do |booking| %>
+    <div class="col-xs-12">
+      <div class="cardbooking">
+        <div class="cardbooking-category">
+          <p><%= booking.guide.title %></p>
+        </div>
+        <div class="cardbooking-description">
+          <h3><%= "Customer: #{booking.profile.user.first_name} #{booking.profile.user.last_name}" %></h3>
+          <p>
+            <%= "Date: #{booking.start_date} for #{booking.days} days" %>
+          </p>
+        </div>
+        <div class="cardbooking-thumbnail">
+          <p><%= booking.status_flows.last.status.title %></p>
+        </div>
+        <div class="cardbooking-action">
+          <% if booking.cancelled? %>
+            <p><em>Booking has been cancelled...</em></p>
+          <% elsif booking.confirmed? || booking.rejected? %>
+            <%= link_to guide_cancel_guide_booking_path(booking.guide, booking), method: :patch do %>
+              <button type="button" class="btn btn-danger">Cancel</button>
+            <% end %>
+          <% elsif booking.paid? %>
+            <%= link_to confirm_guide_booking_path(booking.guide, booking), method: :patch do %>
+              <button type="button" class="btn btn-success">Confirm</button>
+            <% end %>
+            <%= link_to reject_guide_booking_path(booking.guide, booking), method: :patch do %>
+              <button type="button" class="btn btn-danger">Reject</button>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
