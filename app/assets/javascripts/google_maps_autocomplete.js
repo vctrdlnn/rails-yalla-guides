@@ -1,8 +1,6 @@
-console.log("before auto")
 $(document).ready(function() {
   // Code for 'guide address'
   var address = $('#guide_address').get(0);
-console.log("hello")
 
   if (address) {
     var autocomplete = new google.maps.places.Autocomplete(address, { types: ['geocode'] });

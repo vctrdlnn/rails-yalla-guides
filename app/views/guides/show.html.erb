@@ -81,7 +81,6 @@
 <% content_for(:js) do %>
   <script>
     $(document).ready(function() {
-  console.log("hello map")
       var handler = Gmaps.build('Google');
       handler.buildMap({ internal: { id: 'map' } }, function() {
         markers = handler.addMarkers(<%= raw @hash.to_json %>);
