@@ -55,6 +55,7 @@ class BookingsController < ApplicationController
       @booking.set_status_payment_confirmed
       @booking.set_status_pending_confirmation
       redirect_to guide_booking_path(@guide, @booking), notice: 'Booking paid!'
+      BookingMailer.guide_new_booking(@booking).deliver_now
     else
       render :new
     end
@@ -63,16 +64,18 @@ class BookingsController < ApplicationController
   def confirm
     @booking.set_status_confirmed
     redirect_to :back, notice: 'Booking was confirmed, thank you!'
+    BookingMailer.user_booking_confirmed(@booking).deliver_now
   end
 
   def reject
-    @booking.set_status_confirmed
+    @booking.set_status_rejected
     redirect_to :back, alert: 'Booking was rejected!'
   end
 
   def guide_cancel
     @booking.set_status_cancelled_by_guide
     redirect_to :back, alert: 'Booking was cancelled, fees might apply!'
+    BookingMailer.user_booking_confirmed(@booking).deliver_now
   end
 
   private

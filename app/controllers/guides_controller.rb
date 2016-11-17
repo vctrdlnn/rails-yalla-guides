@@ -5,14 +5,25 @@ class GuidesController < ApplicationController
   def index
     @guides = Guide.where.not(latitude: nil, longitude: nil)
     @hash = Gmaps4rails.build_markers(@guides) do |guide, marker|
-    marker.lat guide.latitude
-    marker.lng guide.longitude
-    marker.infowindow render_to_string(partial: "/guides/map_box", locals: { guide: guide })
+      marker.lat guide.latitude
+      marker.lng guide.longitude
+      marker.infowindow render_to_string(partial: "/guides/map_box", locals: { guide: guide })
     end
   end
 
   def show
+    @booking = Booking.new
+
     @guide_coordinates = {lat: @guide.latitude, lon: @guide.longitude}
+
+    @step = Step.new
+    @step_coordinates = { lat: @step.latitude, lng: @step.longitude }
+    @steps = @guide.steps
+    @hash = Gmaps4rails.build_markers(@steps) do |step, marker|
+      marker.lat step.latitude
+      marker.lng step.longitude
+      marker.infowindow render_to_string(partial: "/steps/map_box", locals: { step: step })
+    end
   end
 
   def new
@@ -58,6 +69,6 @@ class GuidesController < ApplicationController
 
   def guide_params
     params.require(:guide).permit(:title, :description, :address, :city,
-     :photo, :photo_cash, :daily_price, :category)
+     :photo, :photo_cash, :daily_price, :category, :profile_id)
   end
 end
