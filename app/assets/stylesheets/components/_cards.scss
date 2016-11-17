@@ -26,6 +26,7 @@
     font-size: 18px;
     text-decoration: overline;
   }
+
 }
 
 .card-price ,.card-name ,.card-review {
@@ -36,4 +37,16 @@
   font-weight: lighter
 }
 
+
+.card2{
+  height: 400px;
+  h2{
+    letter-spacing: 3px;
+  }
+}
+
+.card-category{
+  margin-top: 10px;
+  font-weight: lighter;
+}
 
