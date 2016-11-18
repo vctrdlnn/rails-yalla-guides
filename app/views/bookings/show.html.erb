@@ -1,58 +1,149 @@
-<h2>The Booking</h2>
-
-<p>
-  <%= "You have a booking with #{@booking.guide.title} on #{@booking.start_date}"%>
-  <%= "Status: #{@status_flows.last.status.title}"%>
-</p>
-
-
-
-<div class="wrapper">
-  <div class="page-header">
-    <h2>
-      <%= "Your booking with #{@booking.guide.title} for #{@booking.days} days on #{@booking.start_date}" %>
-    </h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>The Booking</h2>
+      <p>
+        <%= "You have a booking with #{@booking.guide.title} on #{@booking.start_date}"%>
+        <%= "Status: #{@status_flows.last.status.title}"%>
+      </p>
+    </div>
   </div>
-  <div class="container">
+
+  <div class="">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 thumbnail">
-        <p><%= "Booking id: #{@booking.id}" %></p>
-        <% if @booking.guide[:photo] %>
-          <%= image_tag @booking.guide.photo.url %>
+      <div class="col-xs-12">
+        <div class="progress">
+          <% if @booking.cancelled? %>
+            <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+              <span class="sr-only">100%</span>
+            </div>
+          <% elsif @booking.completed? %>
+            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+              <span class="sr-only">100%</span>
+            </div>
+          <% elsif @booking.rejected? %>
+            <div class="progress-bar progress-bar-danger progress-bar-striped " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
+              <span class="sr-only">68%</span>
+            </div>
+          <% elsif @booking.confirmed? %>
+            <div class="progress-bar progress-bar-success progress-bar-striped active " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 68%">
+              <span class="sr-only">68%</span>
+            </div>
+          <% elsif @booking.paid? %>
+             <div class="progress-bar progress-bar-warning progress-bar-striped active " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 42%">
+                <span class="sr-only"></span>
+            </div>
+          <% else %>
+            <div class="progress-bar progress-bar-warning progress-bar-striped active " role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 16%">
+              <span class="sr-only"></span>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="col-xs-offset-1 col-xs-2 status-flow-card">
+        <i class="fa fa-check-circle" aria-hidden="true"></i><br>
+        <%= "Booking Created" %><br>
+        <%= @status_flows.find{ |flow| flow.code == 10 }.created_at.strftime("%d-%b %n %H:%M") %>
+      </div>
+      <div class="col-xs-offset-1 col-xs-2 status-flow-card">
+        <% if @booking.paid? %>
+          <i class="fa fa-check-circle" aria-hidden="true"></i><br>
+          <%= "Booking Paid" %><br>
+          <%= @status_flows.find{ |flow| flow.code == 15 }.created_at.strftime("%d-%b %n %H:%M") %>
+        <% elsif !@booking.paid? %>
+          <i class="fa fa-question-circle" aria-hidden="true"></i><br>
+          <%= "Pending payment...`" %><br>
         <% end %>
       </div>
-      <div class="col-xs-12 col-sm-6">
-        <h3>Status Flow</h3>
-        <table class="table table-hover">
-            <colgroup>
-              <col>
-              <col class="align-right">
-            </colgroup>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-           <% @booking.status_flows.each do |status_flow| %>
-              <tr>
-                <td class="text-left"><%= status_flow.created_at %></td>
-                <td class="text-right"><%= status_flow.status.title %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+      <div class="col-xs-offset-1 col-xs-2 status-flow-card">
+        <% if @booking.rejected? %>
+          <i class="fa fa-times-circle" aria-hidden="true"></i><br>
+          <%= "Confirmed by guide" %><br>
+          <%= @status_flows.find{ |flow| flow.code == 29 }.created_at.strftime("%d-%b %n %H:%M") %>
+        <% elsif @booking.confirmed? %>
+          <i class="fa fa-check-circle" aria-hidden="true"></i><br>
+          <%= "Confirmed by guide" %><br>
+          <%= @status_flows.find{ |flow| flow.code == 25 }.created_at.strftime("%d-%b %n %H:%M") %>
+        <% elsif @booking.paid? %>
+          <i class="fa fa-question-circle" aria-hidden="true"></i><br>
+          <%= "Pending confirmation...`" %><br>
+        <% end %>
       </div>
+      <div class="col-xs-offset-1 col-xs-2 status-flow-card">
+        <% if @booking.cancelled? %>
+          <i class="fa fa-times-circle" aria-hidden="true"></i><br>
+          <%= "Booking Cancelled !" %><br>
+          <%= @status_flows.find{ |flow| (flow.code == 39 || flow.code == 49) }.created_at.strftime("%d-%b") %>
+        <% elsif @booking.completed? %>
+          <i class="fa fa-check-circle" aria-hidden="true"></i><br>
+          <%= "Travel Completed" %><br>
+          <%= @booking.end_date.strftime("%d-%b") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-12">
 
     </div>
   </div>
-  <p>
 
-  </p>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="wrapper">
+        <div class="page-header">
+          <h2>
+            <%= "Your booking with #{@booking.guide.title} for #{@booking.days} days on #{@booking.start_date}" %>
+          </h2>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 thumbnail">
+            <p><%= "Booking id: #{@booking.id}" %></p>
+            <% if @booking.guide[:photo] %>
+              <%= image_tag @booking.guide.photo.url %>
+            <% end %>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <h3>Status Flow</h3>
+            <table class="table table-hover">
+                <colgroup>
+                  <col>
+                  <col class="align-right">
+                </colgroup>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+               <% @booking.status_flows.each do |status_flow| %>
+                  <tr>
+                    <td class="text-left"><%= status_flow.created_at %></td>
+                    <td class="text-right"><%= status_flow.status.title %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </div>
+
+
+
+
+
+
+
 
 
 <%= link_to current_user.profile do %>

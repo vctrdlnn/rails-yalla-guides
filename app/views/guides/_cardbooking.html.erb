@@ -19,7 +19,6 @@
         </div>
         <div class="cardbooking-action">
           <% if booking.cancelled? %>
-            <p><em>Booking has been cancelled...</em></p>
           <% elsif booking.confirmed? || booking.rejected? %>
             <%= link_to guide_cancel_guide_booking_path(booking.guide, booking), method: :patch do %>
               <button type="button" class="btn btn-danger">Cancel</button>
@@ -31,6 +30,9 @@
             <%= link_to reject_guide_booking_path(booking.guide, booking), method: :patch do %>
               <button type="button" class="btn btn-danger">Reject</button>
             <% end %>
+          <% end %>
+          <%= link_to guide_booking_path(booking.guide, booking) do %>
+            <button type="button" class="btn btn-default">See Details</button>
           <% end %>
         </div>
       </div>
