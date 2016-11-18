@@ -1,8 +1,10 @@
 class GuidesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show, :search]
   before_action :set_guide, only: [:show, :update, :destroy, :edit]
   before_action :set_profile, only: [:new, :create, :edit, :update, :destroy]
 
   def index
+    @disable_footer = true
     @guides = Guide.where.not(latitude: nil, longitude: nil)
     set_hash(@guides)
   end
@@ -54,6 +56,7 @@ class GuidesController < ApplicationController
   end
 
   def search
+    @disable_footer = true
     @guides = Guide.near(params["guide"]["address"], 20)
     set_hash(@guides)
     render :index
