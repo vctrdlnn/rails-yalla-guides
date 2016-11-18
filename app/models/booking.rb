@@ -57,4 +57,11 @@ class Booking < ApplicationRecord
     statuses.find_by_code(39).present? || statuses.find_by_code(49).present?
   end
 
+  def completed?
+    if cancelled?
+      false
+    else
+      end_date < Date.today
+    end
+  end
 end
