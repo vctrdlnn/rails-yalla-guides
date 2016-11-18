@@ -1,15 +1,15 @@
 <div id="banner">
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-lg-8 col-lg-offset-2 text-center">
+      <div class="col-xs-12 text-center">
           <div class="banner-form">
-            <form action="guides" class="form-inline">
-              <div class="form-group">
-                <label class="sr-only" for="search_guides_city">City</label>
-                <input type="text" class="form-control input-lg" id="search_guides_city" placeholder="Ou?">
+            <h2>Live the city like a local - follow the guide!</h2>
+            <%= simple_form_for @guide, :url => search_guides_path, :method => :get, :defaults => {:required => false}, html: { :class => "form-inline" } do |f| %>
+              <div class="form-group form-group-lg">
+                <%= f.input :address, label: false %>
+                <%= f.button :submit, 'Book now !', class: "btn btn-success btn-lg" %>
               </div>
-              <button type="submit" class="btn btn-primary btn-lg">Find!</button>
-            </form>
+            <% end %>
           </div>
       </div>
     </div>
@@ -21,21 +21,21 @@
 <div class="wrapper text-center">
   <div class="container">
     <div class="row text-center">
-      <div class="col-xs-12 col-lg-3">
+      <div class="col-xs-12 col-sm-6 col-lg-3">
         <%= image_tag("travel.png", height: '70') %>
-        <div class="presentation text-center"><p>Voyager sereinement</p></div>
+        <div class="presentation text-center"><p>Voyagez sereinement</p></div>
       </div>
-      <div class="col-xs-12 col-lg-3">
+      <div class="col-xs-12 col-sm-6 col-lg-3">
         <%= image_tag("mail.png", height: '70') %>
-        <div class="presentation text-center"><p>Poser directement vos questions</p></div>
+        <div class="presentation text-center"><p>Posez directement vos questions</p></div>
       </div>
-      <div class="col-xs-12 col-lg-3">
+      <div class="col-xs-12 col-sm-6 col-lg-3">
         <%= image_tag("guide.png", height: '70') %>
-        <div class="presentation text-center"><p>Choisisser votre guide parfait</p></div>
+        <div class="presentation text-center"><p>Choisissez le guide parfait</p></div>
       </div>
-      <div class="col-xs-12 col-lg-3">
+      <div class="col-xs-12 col-sm-6 col-lg-3">
         <%= image_tag("pay.png", height: '70') %>
-        <div class="presentation text-center"><p>Paiement sécurisé en ligne</p></div>
+        <div class="presentation text-center"><p>Payez en ligne en toute securite</p></div>
       </div>
     </div>
   </div>

@@ -8,12 +8,35 @@
 <% else %>
   <% @guides.each do |guide| %>
     <div class="col-xs-12 col-sm-6">
-      <div class="card">
-        <%= link_to "", guide_path(guide), {class: "card-link"} %>
-        <%= image_tag guide.photo, height: 200, width: 300, crop: :fill %>
-        <div class="card-price"><strong><%= '€' + guide.daily_price.to_s + '/day'%></strong></div>
-        <div class="card-name"><i><%= guide.profile.user.first_name %><%= ', guide ' + guide.title %></i></div>
-        <div class="card-review text-left"><%= 'the reviews here' %></div>
+      <div class="card-guide">
+        <div class="card-guide-img">
+          <%= image_tag guide.photo, height: 200, width: 250, crop: :fill, :radius=>5, gravity: :auto %>
+        </div>
+        <%= link_to "", guide_path(guide), {class: "card-guide-link"} %>
+        <div class="card-guide-price">
+          <strong><%= '€' + guide.daily_price.to_s + '/day'%></strong>
+        </div>
+        <div class="card-guide-desc text-left">
+          <p><strong><%= guide.title %></strong><br><i><%= ' by ' + guide.profile.user.first_name %></i></p>
+        </div>
+        <div class="card-guide-review text-left">
+          <% prng = Random.new %>
+          <% rating = prng.rand(2..4) %>
+          <% 5.times do |r| %>
+            <i class="fa fa-star<%= "-o" if rating < r %>" aria-hidden="true"></i>
+          <% end %>
+          </div>
+        <div class="card-guide-explore">
+          <%= link_to guide_path(guide) do %>
+            <button type="button" class="btn btn-success btn-sm">
+              <% if current_user.id == guide.profile.user.id %>
+                Manage
+              <% else %>
+                Explore!
+              <% end %>
+            </button>
+          <% end %>
+        </div>
       </div>
     </div>
   <% end %>

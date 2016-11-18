@@ -4,16 +4,12 @@ class GuidesController < ApplicationController
 
   def index
     @guides = Guide.where.not(latitude: nil, longitude: nil)
-    @hash = Gmaps4rails.build_markers(@guides) do |guide, marker|
-      marker.lat guide.latitude
-      marker.lng guide.longitude
-      marker.infowindow render_to_string(partial: "/guides/map_box", locals: { guide: guide })
-    end
+    set_hash(@guides)
   end
 
   def show
     @booking = Booking.new
-
+    @owner = owner?
     @guide_coordinates = {lat: @guide.latitude, lon: @guide.longitude}
 
     @step = Step.new
@@ -57,6 +53,12 @@ class GuidesController < ApplicationController
     redirect_to guides_path , notice: 'Guide was successfully destroyed.'
   end
 
+  def search
+    @guides = Guide.near(params["guide"]["address"], 20)
+    set_hash(@guides)
+    render :index
+  end
+
   private
 
   def set_profile
@@ -67,8 +69,21 @@ class GuidesController < ApplicationController
     @guide = Guide.find(params[:id])
   end
 
+  def set_hash(guides)
+    @hash = Gmaps4rails.build_markers(@guides) do |guide, marker|
+      marker.lat guide.latitude
+      marker.lng guide.longitude
+      marker.infowindow render_to_string(partial: "/guides/map_box", locals: { guide: guide })
+    end
+  end
+
   def guide_params
     params.require(:guide).permit(:title, :description, :address, :city,
      :photo, :photo_cash, :daily_price, :category, :profile_id)
   end
+
+  def owner?
+    current_user.id == @guide.profile.user.id
+  end
+
 end

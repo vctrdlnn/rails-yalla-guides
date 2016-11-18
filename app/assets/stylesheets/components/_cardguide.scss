@@ -1,8 +1,46 @@
 .card-guide {
-  border: 1px solid $rasberry;
+  border: $lightgrey;
   border-radius: 20px;
-  padding: 25px;
+  padding: 5px;
   position: relative;
+  height: 280px;
+  margin: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.card-guide-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.card-guide-img {
+  width: 100%;
+  margin: auto;
+}
+
+.card-guide-price {
+  position: absolute;
+  right: 2px;
+}
+
+.card-guide-desc {
+  position: absolute;
+  left: 2px;
+}
+
+.card-guide-review {
+  position: absolute;
+  bottom: 2px;
+  color: gold;
+}
+
+.card-guide-explore {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
 }
 
 .booking-form {

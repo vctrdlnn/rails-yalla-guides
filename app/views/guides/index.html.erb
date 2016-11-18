@@ -1,23 +1,20 @@
-<div class="min-padded"></div>
 <div class="wrapper">
   <div class="container text-center">
-    <h2>Pick your tour</h2>
+    <h2>Browse and choose among dozens of local guides</h2>
     <div class="min-padded"></div>
-    <% if current_user.profile != nil %>
-      <%= link_to new_guide_path(@guide) do %>
-        <button type="button" class="btn btn-primary">Create your guide</button>
-      <% end %>
-    <% end %>
-    <div class="padded"></div>
     <div class="row text-center">
-      <div class="col-xs-12 col-lg-7 scroll">
+      <div class="col-xs-12 col-md-7 scroll">
         <div class="row">
           <%= render 'cards' %>
         </div>
       </div>
-      <div class="col-xs-12 col-lg-5">
+      <div class="col-xs-12 col-md-5">
         <div class="container-map">
           <div id="map" style="width: 100%; height: 500px;"></div>
+          <div id="locationField" class="min-padded">
+            <input id="guide_address" placeholder="Update search" type="text" />
+            <button id="btn-index-search-update" type="button" class="btn btn-info btn-sm">Update</button>
+          </div>
         </div>
       </div>
     </div>
@@ -40,6 +37,17 @@
           handler.getMap().setZoom(14);
         }
       });
+      // console.log(handler)
+      // $('#map').change(function() {
+      //   console.log('change');
+      // });
+      $('#btn-index-search-update').click(function(){
+        var input = $('#guide_address').val()
+        window.location.href = '/guides/search?guide%5Baddress%5D=' + input;
+      });
+
+
+
     });
   </script>
 <% end %>

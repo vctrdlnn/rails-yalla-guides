@@ -2,19 +2,7 @@
 <p>Find me in app/views/bookings/new.html.erb</p>
 <div class="container">
     <div class="col-xs-12 col-sm-12">
-      <%= simple_form_for [@guide, @booking], html: { :class => "form-inline" } do |f| %>
-        <%= f.error_notification %>
-
-        <div class="form-inputs date">
-          <%= f.input :start_date, as: :string, label: "Book from ", input_html: { :style => 'width: 120px; padding-right: 0px; margin-right: 5px;' } %>
-          <%= f.input :days, label: " for ", input_html: { value: '1', style: 'width: 40px; padding-right: 0px; margin-right: 5px;' } %>
-          <%= f.input :meeting_time, as: :string, label: " days, starting at", input_html: { value: '10:00 am', style: 'width: 80px; padding-right: 0px; margin-right: 5px;' } %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit %>
-        </div>
-      <% end %>
+      <%= render 'bookings/form' %>
   </div>
 </div>
 

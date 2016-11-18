@@ -6,6 +6,7 @@ html {
   height: 100%;
 }
 
+/* TODO: Adjust body and put in application.scss or change for home page */
 body {
   min-height: 100%;
   margin: 0;
@@ -24,7 +25,11 @@ body {position: relative;}
   padding-top: 300px;
 }
 
-.form-control{
+#banner-form h2 {
+  color: white;
+}
+
+.banner-form-control{
   margin-right: 20px;
   padding-right: 50px;
 }
@@ -54,7 +59,7 @@ body {position: relative;}
 }
 
 .scroll{
-  overflow: scroll;
+  overflow: auto;
   height: 500px;
 }
 

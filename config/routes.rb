@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   resources :guides do
+    collection do                       # collection => no restaurant id in
+      get 'search', to: "guides#search"  # RestaurantsController#top
+    end
     resources :steps
     resources :bookings do
       member do
