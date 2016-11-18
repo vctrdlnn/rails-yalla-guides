@@ -1,12 +1,11 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: [:show, :guide, :index]
-  before_action :set_profile, only: [:show, :guide, :index]
-  before_action :set_bookings, only: [:show, :guide]
-  before_action :set_guide_bookings, only: [:guide]
-  before_action :set_guides, only: [:show, :guide]
+  before_action :set_user, only: [:user_dashboard, :guide_dashboard, :index]
+  before_action :set_profile, only: [:user_dashboard, :guide_dashboard, :index]
+  before_action :set_bookings, only: [:user_dashboard, :guide_dashboard]
+  before_action :set_guide_bookings, only: [:guide_dashboard]
+  before_action :set_guides, only: [:user_dashboard, :guide_dashboard]
 
   def show
-    @profile = Profile.find(params[:id])
   end
 
   def new
@@ -27,7 +26,11 @@ class ProfilesController < ApplicationController
     @attributes = Profile.attribute_names - %w(id user_id created_at updated_at)
   end
 
-  def guide
+  def guide_dashboard
+  end
+
+  def user_dashboard
+    @profile = Profile.find(params[:id])
   end
 
   private

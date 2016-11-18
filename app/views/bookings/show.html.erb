@@ -1,58 +1,83 @@
-<h2>The Booking</h2>
-
-<p>
-  <%= "You have a booking with #{@booking.guide.title} on #{@booking.start_date}"%>
-  <%= "Status: #{@status_flows.last.status.title}"%>
-</p>
-
-
-
-<div class="wrapper">
-  <div class="page-header">
-    <h2>
-      <%= "Your booking with #{@booking.guide.title} for #{@booking.days} days on #{@booking.start_date}" %>
-    </h2>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+          <span class="sr-only">40% Complete (success)</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 thumbnail">
-        <p><%= "Booking id: #{@booking.id}" %></p>
-        <% if @booking.guide[:photo] %>
-          <%= image_tag @booking.guide.photo.url %>
-        <% end %>
-      </div>
-      <div class="col-xs-12 col-sm-6">
-        <h3>Status Flow</h3>
-        <table class="table table-hover">
-            <colgroup>
-              <col>
-              <col class="align-right">
-            </colgroup>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-           <% @booking.status_flows.each do |status_flow| %>
-              <tr>
-                <td class="text-left"><%= status_flow.created_at %></td>
-                <td class="text-right"><%= status_flow.status.title %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>The Booking</h2>
+      <p>
+        <%= "You have a booking with #{@booking.guide.title} on #{@booking.start_date}"%>
+        <%= "Status: #{@status_flows.last.status.title}"%>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
 
     </div>
   </div>
-  <p>
 
-  </p>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="wrapper">
+        <div class="page-header">
+          <h2>
+            <%= "Your booking with #{@booking.guide.title} for #{@booking.days} days on #{@booking.start_date}" %>
+          </h2>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 thumbnail">
+            <p><%= "Booking id: #{@booking.id}" %></p>
+            <% if @booking.guide[:photo] %>
+              <%= image_tag @booking.guide.photo.url %>
+            <% end %>
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <h3>Status Flow</h3>
+            <table class="table table-hover">
+                <colgroup>
+                  <col>
+                  <col class="align-right">
+                </colgroup>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+               <% @booking.status_flows.each do |status_flow| %>
+                  <tr>
+                    <td class="text-left"><%= status_flow.created_at %></td>
+                    <td class="text-right"><%= status_flow.status.title %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </div>
+
+
+
+
+
+
+
 
 
 <%= link_to current_user.profile do %>

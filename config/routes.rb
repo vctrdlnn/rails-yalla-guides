@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :guides do
+  resources :guides, only: [:index, :new, :edit, :show] do
     collection do                       # collection => no restaurant id in
       get 'search', to: "guides#search"  # RestaurantsController#top
     end
@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   resources :reviews
   resources :profiles do
     member do
-      get 'guide'
+      get 'guide_dashboard'
+      get 'user_dashboard'
     end
 
   end
