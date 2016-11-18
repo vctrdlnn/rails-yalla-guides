@@ -1,0 +1,33 @@
+
+
+<div class="container">
+  <div class="row">
+    <h3 class="text-center">My profile</h3>
+    <div class="padded"></div>
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4 text-center">
+        <div class="card-profile">
+            <div class="card-profile-img text-center">
+          <%= image_tag @profile.photo, height: 100, width: 100, crop: :fill %>
+            </div>
+            <div class="row">
+              <div class="card-profile-name">
+                <p><strong><%= @profile.user.name %></strong></p>
+              </div>
+              <div class="col-xs-12 col-md-6 card-profile-city">
+                <p><i class="fa fa-map-marker" aria-hidden="true"></i>   <%= @profile.hometown %></p>
+              </div>
+              <div class="col-xs-12 col-md-6 card-profile-birth">
+                <p><i class="fa fa-birthday-cake" aria-hidden="true"></i>   <%= @profile.birthday %></p>
+              </div>
+            </div>
+            <div class="card-profile-about">
+              <div class="ligne"><i class="fa fa-pencil" aria-hidden="true"></i></div>
+                <p><%= @profile.aboutme %></p>
+                <div class="min-padded"></div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="padded"></div>

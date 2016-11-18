@@ -1,0 +1,46 @@
+.card-profile{
+  background-color: #E1E4E6;
+}
+
+.card-profile-img{
+  padding-top: 7px;
+  padding-left: 7px;
+   img{
+    border-radius: 50%;
+    position: relative;
+    bottom: 46px;
+    border: 2px solid white;
+  }
+}
+
+
+.card-profile-birth, .card-profile-city{
+  margin-top: 10px;
+}
+
+.card-profile-about{
+  margin-top: 20px;
+  p{
+    word-wrap: break-word;
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+.card-profile-name p{
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+
+
+
+
+.ligne{
+  border-top: 1px solid lightgrey;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
