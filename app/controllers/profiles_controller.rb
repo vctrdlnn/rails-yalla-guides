@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: [:user_dashboard, :guide_dashboard, :index]
-  before_action :set_profile, only: [:user_dashboard, :guide_dashboard, :index]
+  before_action :set_user, only: [:user_dashboard, :guide_dashboard, :index, :update, :show]
+  before_action :set_profile, only: [:user_dashboard, :guide_dashboard, :index, :update, :show]
   before_action :set_bookings, only: [:user_dashboard, :guide_dashboard]
   before_action :set_guide_bookings, only: [:guide_dashboard]
   before_action :set_guides, only: [:user_dashboard, :guide_dashboard]
@@ -29,6 +29,14 @@ class ProfilesController < ApplicationController
   def guide_dashboard
   end
 
+  def update
+    if @profile.update(guide_params)
+      redirect_to @profile, notice: 'Profile was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
   def user_dashboard
     @profile = Profile.find(params[:id])
   end
@@ -36,7 +44,7 @@ class ProfilesController < ApplicationController
   private
 
   def guide_params
-    params.require(:profile).permit(:role, :user_id)
+    params.require(:profile).permit(:role, :user_id, :photo, :photo_cache, :hometown, :birthday, :aboutme)
   end
 
   def set_user
