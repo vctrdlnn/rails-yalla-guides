@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Yalla! Find your guide</title>
+    <title><%= " (" + current_user.pending_confirmations.count.to_s + ")" unless current_user.nil? || current_user.pending_confirmations.count == 0 %><%= yield(:title).blank? ? "Yalla! Find your guide" : yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -12,7 +12,7 @@
   </head>
   <body>
     <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <%= render 'shared/flashes' unless action_name == "home" %>
     <%= yield %>
     <%= render 'shared/footer' unless @disable_footer %>
 

@@ -17,6 +17,16 @@ class User < ApplicationRecord
     first_name + " " + last_name
   end
 
+  def pending_confirmations
+    pending = []
+    self.profile.guides.each do |guide|
+      guide.bookings.each do |book|
+        pending << book if book.pending?
+      end
+    end
+    pending
+end
+
   def self.find_for_facebook_oauth(auth)
     user_params = auth.to_h.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
