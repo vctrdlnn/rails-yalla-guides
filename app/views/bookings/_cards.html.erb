@@ -20,11 +20,11 @@
           <h4><%= booking.guide.title %></h4>
         </div>
         <div class="col-xs-12 col-md-6 cardlisting-category">
-            <% if booking.confirmed? %>
+            <% if booking.rejected? || booking.cancelled?%>
+               <p><i class="fa fa-times" aria-hidden="true" style="color: red"></i></i><%= booking.status_flows.last.status.title %></p>
+            <% elsif booking.confirmed? %>
               <p><i class="fa fa-check" aria-hidden="true" style="color: green"></i><%= booking.status_flows.last.status.title %></p>
-              <% elsif booking.rejected? || booking.cancelled?%>
-              <p><i class="fa fa-times" aria-hidden="true" style="color: red"></i></i><%= booking.status_flows.last.status.title %></p>
-              <% else %>
+            <% else %>
               <p><%= booking.status_flows.last.status.title %></p>
             <% end %>
         </div>

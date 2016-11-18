@@ -1,9 +1,7 @@
 <% if @guides.empty? %>
   <h2>No tours yet!</h2>
   <%= link_to new_guide_path do %>
-    <button type="button" class="btn btn-success btn-lg">
       Propose a tour in your city now!
-    </button>
   <% end %>
 <% else %>
   <% @guides.each do |guide| %>

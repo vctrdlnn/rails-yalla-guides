@@ -45,6 +45,10 @@ class Booking < ApplicationRecord
     statuses.find_by_code(15).present?
   end
 
+  def pending?
+    statuses.find_by_code(20).present? && ! (confirmed? || rejected?)
+  end
+
   def confirmed?
     statuses.find_by_code(25).present?
   end

@@ -4,4 +4,7 @@ class PagesController < ApplicationController
   def home
     @guide = Guide.new
   end
+  def nothing
+
+  end
 end

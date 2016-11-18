@@ -86,7 +86,7 @@ class GuidesController < ApplicationController
   end
 
   def owner?
-    current_user.id == @guide.profile.user.id
+    !current_user.nil? && current_user.id == @guide.profile.user.id
   end
 
 end

@@ -23,6 +23,10 @@
   width: 100%;
 }
 
+.bottom-align {
+  vertical-align: bottom;
+}
+
 // Backgrounds
 .bg-black {
   background: #4a4a4a;
@@ -35,4 +39,8 @@
 }
 .bg-dark-blue {
   background: #3b5998;
+}
+
+.not-padded {
+  padding: 0px;
 }
