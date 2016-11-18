@@ -19,5 +19,31 @@
 
 .scroll{
   overflow: auto;
-  height: 500px;
+  height: 100%;
+}
+
+.guides-index-wrapper {
+  position: absolute;
+  top: 62px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.guides-index {
+  position: relative;
+}
+
+.guides-index .index-container-map {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+#map-index {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

@@ -1,15 +1,16 @@
-<div class="min-padded"></div>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <% if @owner %>
-        <p>
-          <em>You are the owner of this guide - you may
-          <%= link_to edit_guide_path(@guide.id) do %>
-            <button class="btn btn-info">Edit</button>
-          <% end %>
-        </em></p>
-      <% end %>
+    <div class="col-xs-12 col-sm-9 col-sm-6 col-lg-4 text-center">
+      <div class="notice">
+        <% if @owner %>
+          <p>
+            <em>You are the owner of this guide:
+            <%= link_to edit_guide_path(@guide.id) do %>
+              <button class="btn btn-info">click here to edit</button>
+            <% end %>
+          </em></p>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="row">
