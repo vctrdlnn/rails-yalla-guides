@@ -23,30 +23,32 @@
       </div>
     </div>
   </div>
-  <div class="row text-left">
-    <div class="col-xs-12 col-sm-6 quarter">
+  <div class="min-padded"></div>
     <h3 class = 'text-center'>About the tour...</h3>
-      <div class="guide-show-box">
+      <div class="guide-show-box text-center">
         <div class="min-padded"></div>
-        <p><strong>Description:</strong></p>
-        <p><%= @guide.description %></p>
-        <p><strong>What to expect:</strong></p>
-        <p><%= @guide.category %></p>
-        <p><strong>Starting point:</strong></p>
-        <p><%= @guide.address %></p>
-        <p class='price'><%= "#{@guide.daily_price} €/day" %></p>
-      </div>
-    </div>
-
-    <div class="col-xs-12 col-sm-6 quarter">
-      <h3 class = 'text-center'>About the guide...</h3>
-        <div class="guide-show-box">
-          <div class="min-padded"></div>
+        <div class="col-xs-12 col-sm-3">
+          <p><strong>Description:</strong></p>
+          <p><%= @guide.description %></p>
         </div>
-    </div>
+        <div class="col-xs-12 col-sm-3">
+          <p><strong>What to expect:</strong></p>
+          <p><%= @guide.category %></p>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <p><strong>Starting point:</strong></p>
+          <p><%= @guide.address %></p>
+        </div>
+        <div class="col-xs-12 col-sm-3">
+          <p><strong>Price:</strong></p>
+          <p><%= @guide.daily_price %> €/day</p>
+        </div>
+      </div>
 
-  </div>
   <div class="row-steps">
+  <div class="padded"></div>
+  <div class="min-padded"></div>
+
     <div class="col-xs-12 col-sm-6 quarter text-center">
       <h3>My typical tour</h3>
       <div class="min-padded"></div>
