@@ -42,7 +42,9 @@
           </div>
           <div class="col-xs-6 col-md-12 text-right">
             <% if !booking.paid? %>
+
               <%= link_to payment_guide_booking_path(booking.guide,booking) do %>
+
                 <button type="button" class="btn btn-primary">Pay now</button>
               <% end %>
             <% end %>

@@ -48,16 +48,21 @@ class BookingsController < ApplicationController
   end
 
   def payment
+    @booking.amount_paid = 0 if @booking.amount_paid.nil?
   end
 
   def process_payment
-    if @booking.update(payment_params)
-      @booking.set_status_payment_confirmed
-      @booking.set_status_pending_confirmation
-      redirect_to guide_booking_path(@guide, @booking), notice: 'Booking paid!'
-      BookingMailer.guide_new_booking(@booking).deliver_now
+    if payment_params[:amount_paid].to_i != @booking.total_price
+      redirect_to @booking, alert: "Wrong amount, please pay again"
     else
-      render :new
+      if @booking.update(payment_params)
+        @booking.set_status_payment_confirmed
+        @booking.set_status_pending_confirmation
+        redirect_to guide_booking_path(@guide, @booking), notice: 'Booking paid!'
+        BookingMailer.guide_new_booking(@booking).deliver_now
+      else
+        render :payment
+      end
     end
   end
 

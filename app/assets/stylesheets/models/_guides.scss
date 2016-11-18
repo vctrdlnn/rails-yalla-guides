@@ -1,6 +1,49 @@
+// .guide-show-box {
+//   border: 1px solid $brand-color;
+//   border-radius: 20px;
+//   padding: 25px;
+//   position: relative;
+// }
+
 .guide-show-box {
-  border: 1px solid $brand-color;
-  border-radius: 20px;
-  padding: 25px;
+  border-top: 1px solid #ddd;
+}
+
+
+.banner-guide{
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(2,2,2,0.28) 50%), url('@guide.photo');
+  background-repeat:no-repeat;
+  background-size: cover;
+  height: 100px;
+}
+
+.scroll{
+  overflow: auto;
+  height: 100%;
+}
+
+.guides-index-wrapper {
+  position: absolute;
+  top: 62px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.guides-index {
   position: relative;
+}
+
+.guides-index .index-container-map {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+#map-index {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }

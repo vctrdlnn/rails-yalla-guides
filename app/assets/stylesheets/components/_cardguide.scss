@@ -3,8 +3,8 @@
   border-radius: 20px;
   padding: 5px;
   position: relative;
-  height: 280px;
-  margin: 20px;
+  height: 250px;
+  margin: 5px;
   background-color: white;
   border-radius: 10px;
 }
@@ -13,12 +13,15 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 100%;
 }
 
 .card-guide-img {
   width: 100%;
+  height: 170px;
   margin: auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 10px;
 }
 
 .card-guide-price {
@@ -60,5 +63,4 @@
 .step-map {
   padding-right: 0px;
 }
-
 

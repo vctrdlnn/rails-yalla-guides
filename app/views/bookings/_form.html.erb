@@ -1,17 +1,37 @@
 <div>
   <%= simple_form_for [@guide, @booking], :defaults => {:required => false}, html: { :class => "form-inline" } do |f| %>
     <%= f.error_notification %>
-
-    <div class="form-inputs date">
-        <p><strong>
-              <%= f.input :days, label: "Book this guide for ", collection: 1..10, selected: 1, include_blanks: false, input_html: { style: 'width: 40px; padding: 5px;' } %> day(s),
-                starting on  <%= f.input :start_date, as: :string, label: false, input_html: { style: 'width: 120px;' } %>
-                at <%= f.input :meeting_time, as: :string, label: false, input_html: { value: '10:00 am', style: 'width: 80px;' } %> o'clock.
-        </strong></p>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Your booking</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-inputs date">
+                <p><strong>
+                      <%= f.input :days, label: "Book this guide for ", collection: 1..10, selected: 1, include_blanks: false, input_html: { style: 'width: 40px; padding: 5px;' } %> day(s),
+                        starting on  <%= f.input :start_date, as: :string, label: false, input_html: { style: 'width: 120px;' } %>
+                        at <%= f.input :meeting_time, as: :string, label: false, input_html: { value: '10:00 am', style: 'width: 80px;' } %> o'clock.
+                </strong></p>
+            </div>
+          </div>
+          <div class="modal-footer text-center">
+            <%= f.button :submit, 'Book now !', class: "btn btn-success btn-lg button-submit" %>
+          </div>
+        </div>
+      </div>
     </div>
-
+    <!-- Button trigger modal -->
     <div class="form-actions">
-      <%= f.button :submit, 'Book now !', class: "btn btn-success" %>
+        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">Book now !</button>
     </div>
   <% end %>
 </div>
+
+
+
+
+

@@ -7,10 +7,10 @@
   <% end %>
 <% else %>
   <% @guides.each do |guide| %>
-    <div class="col-xs-12 col-sm-6">
+    <div class="col-xs-12 col-sm-6 col-lg-4">
       <div class="card-guide">
-        <div class="card-guide-img">
-          <%= image_tag guide.photo, height: 200, width: 250, crop: :fill, :radius=>5, gravity: :auto %>
+        <div>
+          <%= image_tag guide.photo, height: 200, width: 200, crop: :fill, :radius=>5, gravity: :auto, :class => "card-guide-img" %>
         </div>
         <%= link_to "", guide_path(guide), {class: "card-guide-link"} %>
         <div class="card-guide-price">
@@ -29,7 +29,7 @@
         <div class="card-guide-explore">
           <%= link_to guide_path(guide) do %>
             <button type="button" class="btn btn-success btn-sm">
-              <% if current_user.id == guide.profile.user.id %>
+              <% if !current_user.nil? && current_user.id == guide.profile.user.id %>
                 Manage
               <% else %>
                 Explore!
