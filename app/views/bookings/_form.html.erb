@@ -1,0 +1,17 @@
+<div>
+  <%= simple_form_for [@guide, @booking], :defaults => {:required => false}, html: { :class => "form-inline" } do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs date">
+        <p><strong>
+              <%= f.input :days, label: "Book this guide for ", collection: 1..10, selected: 1, include_blanks: false, input_html: { style: 'width: 40px; padding: 5px;' } %> day(s),
+                starting on  <%= f.input :start_date, as: :string, label: false, input_html: { style: 'width: 120px;' } %>
+                at <%= f.input :meeting_time, as: :string, label: false, input_html: { value: '10:00 am', style: 'width: 80px;' } %> o'clock.
+        </strong></p>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, 'Book now !', class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

@@ -1,6 +1,5 @@
 .card {
   height: 200px;
-  width: 200px;
   position: relative;
   &:hover{
     opacity: 0.85;
@@ -15,7 +14,6 @@
 }
 
 .card{
-  width: 300px;
   height: 300px;
   margin: 20px;
   background-color: white;

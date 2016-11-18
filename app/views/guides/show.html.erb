@@ -1,39 +1,46 @@
 <div class="min-padded"></div>
-<h1 class = "text-center"><%= @guide.title %></h1>
-<div class="min-padded"></div>
+
 <div class="container">
-  <div class="row text-center">
+  <div class="row">
+    <div class="col-xs-12">
+      <% if @owner %>
+        <p>
+          <em>You are the owner of this guide - you may
+          <%= link_to edit_guide_path(@guide.id) do %>
+            <button class="btn btn-info">Edit</button>
+          <% end %>
+        </em></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+      <h1 class = "text-center"><%= @guide.title %></h1>
+      <h3 class = "text-right"><em><%= "by #{@guide.profile.user.name}" %></em></h3>
+    </div>
+  </div>
+  <div class="row text-left">
     <div class="col-xs-12 col-sm-6 quarter">
-      <div class="card-guide">
-        <h3>Guide of the tour: <%= @guide.profile.user.first_name %></h3>
-        <p><strong>What to expect:</strong> <%= @guide.category %></p>
-        <p><strong>Starting point:</strong> <%= @guide.address %></p>
-        <p><strong>About:</strong> <%= @guide.description %></p>
+      <div class="guide-show-box">
+        <p><strong>Description:</strong></p>
+        <p><%= @guide.description %></p>
+        <p><strong>What to expect:</strong></p>
+        <p><%= @guide.category %></p>
+        <p><strong>Starting point:</strong><%= @guide.address %></p>
         <p class='price'><%= "#{@guide.daily_price} €/day" %></p>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6 quarter">
-      <div class="card-guide">
-        <%= simple_form_for [@guide, @booking], html: { :class => "form-inline" } do |f| %>
-          <%= f.error_notification %>
-          <div class="form-inputs date booking-form">
-            <%= f.input :start_date, as: :string, label: "Book from ", input_html: { :style => 'width: 120px; padding-right: 0px; margin-right: 5px;' } %>
-            <%= f.input :days, label: " for ", input_html: { value: '1', style: 'width: 40px; padding-right: 0px; margin-right: 5px;' } %>
-            <%= f.input :meeting_time, as: :string, label: " days, starting at", input_html: { value: '10:00 am', style: 'width: 80px; padding-right: 0px; margin-right: 5px;' } %>
-          </div>
-          <div class="book-button">
-            <div class="form-actions">
-              <%= f.button :submit, 'Book now !', class: "btn-lg" %>
-            </div>
-            <% end %>
-            <%= link_to 'Back', guides_path, class: "back-button" %>
-          </div>
+      <% if !@owner %>
+        <div class="guide-show-box">
+            <%= render 'bookings/form' %>
         </div>
+      <% end %>
     </div>
   </div>
   <div class="row-steps">
     <div class="col-xs-12 col-sm-6 quarter text-center">
-      <h3>The perfect plan</h3>
+      <h3>My typical tour</h3>
       <div class="min-padded"></div>
       <table class="table table-hover">
           <colgroup>
@@ -44,37 +51,41 @@
           <tr>
             <th>Step</th>
             <th>Establishment</th>
-            <th>Delete?</th>
+            <% if @owner %><th>Delete?</th><% end %>
           </tr>
         </thead>
-        <tfoot>
-          <%= simple_form_for [@guide, @step] do |f| %>
-            <tr class="warning">
-              <td>
-                <%= f.input :title, label: false, placeholder: 'Step' %>
-              </td>
-              <td>
-                <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
-                <%= f.input :address, as: :hidden, label: false %>
-                <%= f.input :city, as: :hidden, label: false %>
-                <%= f.input :category, as: :hidden, label: false %>
-              </td>
-              <td>
-                <%= f.button :submit, "Add", class: "btn btn-primary" %>
-              </td>
-            </tr>
-          <% end %>
-        </tfoot>
+        <% if @owner %>
+          <tfoot>
+            <%= simple_form_for [@guide, @step] do |f| %>
+              <tr class="warning">
+                <td>
+                  <%= f.input :title, label: false, placeholder: 'Step' %>
+                </td>
+                <td>
+                  <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
+                  <%= f.input :address, as: :hidden, label: false %>
+                  <%= f.input :city, as: :hidden, label: false %>
+                  <%= f.input :category, as: :hidden, label: false %>
+                </td>
+                <td>
+                  <%= f.button :submit, "Add", class: "btn btn-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tfoot>
+        <% end %>
         <tbody>
          <% @guide.steps.each do |step| %>
             <tr>
               <td class="text-left"><%= step.title %></td>
               <td class="text-right"><%= step.establishment %></td>
-              <td class="text-right">
-                <%= link_to guide_step_path(@guide, step) , method: :delete, data: {confirm: "are you sure ?"} do %>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                <% end %>
-              </td>
+              <% if @owner %>
+                <td class="text-right">
+                  <%= link_to guide_step_path(@guide, step) , method: :delete, data: {confirm: "are you sure ?"} do %>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  <% end %>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
