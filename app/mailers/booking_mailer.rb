@@ -7,6 +7,7 @@ class BookingMailer < ApplicationMailer
   #
   def guide_new_booking(booking)
     @greeting = "Hi you have a new booking"
+    @booking = booking
     @guide = booking.guide.profile.user
     mail to: @guide.email, subject: "Hi #{@guide.first_name}, you have a new reservation"
   end
