@@ -3,10 +3,10 @@
     <div class="col-xs-12 col-sm-9 col-sm-6 col-lg-4 text-center">
       <div class="notice">
         <% if @owner %>
-          <p>
-            <em>You are the owner of this guide:
+        <p>
+          <em>You are the owner of this guide:
             <%= link_to edit_guide_path(@guide.id) do %>
-              <button class="btn btn-info">click here to edit</button>
+            <button class="btn btn-info">click here to edit</button>
             <% end %>
           </em></p>
         <% end %>
@@ -19,88 +19,87 @@
       <h3 class = "text-right"><em><%= "by #{@guide.profile.user.name}" %></em></h3>
       <div class = "text-center">
         <% if !@owner %>
-          <%= render 'bookings/form' %>
+        <%= render 'bookings/form' %>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="min-padded"></div>
+  <div class="row min-padded">
     <h3 class = 'text-center'>About the tour...</h3>
-      <div class="guide-show-box text-center">
-        <div class="min-padded"></div>
-        <div class="col-xs-12 col-sm-3">
-          <p><strong>Description:</strong></p>
-          <p><%= @guide.description %></p>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <p><strong>What to expect:</strong></p>
-          <p><%= @guide.category %></p>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <p><strong>Starting point:</strong></p>
-          <p><%= @guide.address %></p>
-        </div>
-        <div class="col-xs-12 col-sm-3">
-          <p><strong>Price:</strong></p>
-          <p><%= @guide.daily_price %> €/day</p>
-        </div>
+    <div class="guide-show-box text-center">
+      <div class="min-padded"></div>
+      <div class="col-xs-12 col-sm-3">
+        <p><strong>Description:</strong></p>
+        <p><%= @guide.description %></p>
       </div>
-
-  <div class="row-steps">
+      <div class="col-xs-12 col-sm-3">
+        <p><strong>What to expect:</strong></p>
+        <p><%= @guide.category %></p>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <p><strong>Starting point:</strong></p>
+        <p><%= @guide.address %></p>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <p><strong>Price:</strong></p>
+        <p><%= @guide.daily_price %> €/day</p>
+      </div>
+    </div>
+  </div>
   <div class="padded"></div>
   <div class="min-padded"></div>
-
+  <div class = "row">
     <div class="col-xs-12 col-sm-6 quarter text-center">
       <h3>My typical tour</h3>
       <div class="min-padded"></div>
       <table class="table table-hover">
-          <colgroup>
-            <col>
-            <col class="align-right">
-          </colgroup>
-        <thead>
-          <tr>
-            <th>Step</th>
-            <th>Establishment</th>
-            <% if @owner %><th>Delete?</th><% end %>
-          </tr>
-        </thead>
-        <% if @owner %>
-          <tfoot>
-            <%= simple_form_for [@guide, @step] do |f| %>
-              <tr class="warning">
-                <td>
-                  <%= f.input :title, label: false, placeholder: 'Step' %>
-                </td>
-                <td>
-                  <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
-                  <%= f.input :address, as: :hidden, label: false %>
-                  <%= f.input :city, as: :hidden, label: false %>
-                  <%= f.input :category, as: :hidden, label: false %>
-                </td>
-                <td>
-                  <%= f.button :submit, "Add", class: "btn btn-primary" %>
-                </td>
-              </tr>
-            <% end %>
-          </tfoot>
+        <colgroup>
+        <col>
+        <col class="align-right">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Step</th>
+          <th>Establishment</th>
+          <% if @owner %><th>Delete?</th><% end %>
+        </tr>
+      </thead>
+      <% if @owner %>
+      <tfoot>
+        <%= simple_form_for [@guide, @step] do |f| %>
+        <tr class="warning">
+          <td>
+            <%= f.input :title, label: false, placeholder: 'Step' %>
+          </td>
+          <td>
+            <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
+            <%= f.input :address, as: :hidden, label: false %>
+            <%= f.input :city, as: :hidden, label: false %>
+            <%= f.input :category, as: :hidden, label: false %>
+          </td>
+          <td>
+            <%= f.button :submit, "Add", class: "btn btn-primary" %>
+          </td>
+        </tr>
         <% end %>
-        <tbody>
-         <% @guide.steps.each do |step| %>
-            <tr>
-              <td class="text-left"><%= step.title %></td>
-              <td class="text-right"><%= step.establishment %></td>
-              <% if @owner %>
-                <td class="text-right">
-                  <%= link_to guide_step_path(@guide, step) , method: :delete, data: {confirm: "are you sure ?"} do %>
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  <% end %>
-                </td>
-              <% end %>
-            </tr>
+      </tfoot>
+      <% end %>
+      <tbody>
+       <% @guide.steps.each do |step| %>
+       <tr>
+        <td class="text-left"><%= step.title %></td>
+        <td class="text-right"><%= step.establishment %></td>
+        <% if @owner %>
+        <td class="text-right">
+          <%= link_to guide_step_path(@guide, step) , method: :delete, data: {confirm: "are you sure ?"} do %>
+          <i class="fa fa-trash" aria-hidden="true"></i>
           <% end %>
-        </tbody>
-      </table>
+        </td>
+        <% end %>
+      </tr>
+      <% end %>
+      </tbody>
+    </table>
     </div>
     <div class="col-xs-12 col-sm-6 quarter step-map">
       <div class="container-map-2">
@@ -112,25 +111,25 @@
 
 
 <% content_for(:js) do %>
-  <script>
-    $(document).ready(function() {
-      var handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function() {
-        markers = handler.addMarkers(<%= raw @hash.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        if (markers.length == 0) {
-          handler.getMap().setZoom(2);
-        } else if (markers.length == 1) {
-          handler.getMap().setZoom(14);
-        }
-      });
-      $('#booking_start_date').datetimepicker({
-        format: 'DD MMM YYYY'
-      });
-      $('#booking_meeting_time').datetimepicker({
-        format: 'HH:mm'
-      });
+<script>
+  $(document).ready(function() {
+    var handler = Gmaps.build('Google');
+    handler.buildMap({ internal: { id: 'map' } }, function() {
+      markers = handler.addMarkers(<%= raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+      if (markers.length == 0) {
+        handler.getMap().setZoom(2);
+      } else if (markers.length == 1) {
+        handler.getMap().setZoom(14);
+      }
     });
-  </script>
+    $('#booking_start_date').datetimepicker({
+      format: 'DD MMM YYYY'
+    });
+    $('#booking_meeting_time').datetimepicker({
+      format: 'HH:mm'
+    });
+  });
+</script>
 <% end %>
