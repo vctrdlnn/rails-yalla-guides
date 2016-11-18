@@ -36,7 +36,7 @@
           <p><%= "Mobile: #{@booking.profile.user.mobile}" %> </p>
         </div>
         <div class="col-xs-6">
-          <%= link_to guide_dashboard_path do %>
+          <%= link_to guide_dashboard_profile_path(current_user.profile) do %>
             <button type="button" class="btn btn-default">Back</button>
           <% end %>
         </div>
@@ -47,7 +47,7 @@
           <p><%= "Mobile: #{@booking.guide.profile.user.mobile}" %> </p>
         </div>
         <div class="col-xs-6 text-right bottom-align">
-          <%= link_to current_user.profile do %>
+          <%= link_to user_dashboard_profile_path(current_user.profile) do %>
             <button type="button" class="btn btn-default">Back</button>
           <% end %>
         </div>
