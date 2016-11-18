@@ -29,6 +29,13 @@ body {position: relative;}
   color: white;
 }
 
+.home-text {
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
+
 .banner-form-control{
   margin-right: 20px;
   padding-right: 50px;
