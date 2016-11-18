@@ -5,4 +5,8 @@ class StatusFlow < ApplicationRecord
   validates :booking, presence: true
   validates :status, presence: true, uniqueness: { scope: :booking,
     message: "status already occured" }
+
+  def code
+    status.code
+  end
 end
