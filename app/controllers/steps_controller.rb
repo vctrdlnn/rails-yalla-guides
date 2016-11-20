@@ -15,15 +15,20 @@ class StepsController < ApplicationController
   end
 
   def edit
-
   end
 
   def create
     @step = @guide.steps.build(step_params)
     if @step.save
-      redirect_to :back, notice: 'Step was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to :back, notice: 'Step was successfully created.' }
+        format.js  # <‐‐ will render `app/views/reviews/create.js.erb`
+      end
     else
-      redirect_to guide_path(@guide), alert: 'Step was not created.'
+      respond_to do |format|
+        format.html { render 'guides/show' }
+        format.js  # <‐‐ idem
+      end
     end
   end
 

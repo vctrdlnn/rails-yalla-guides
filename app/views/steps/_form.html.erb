@@ -1,0 +1,8 @@
+<%= simple_form_for [guide, step], remote:true do |f| %>
+    <%= f.input :title, label: false, placeholder: 'Step' %>
+    <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
+    <%= f.input :address, as: :hidden, label: false %>
+    <%= f.input :city, as: :hidden, label: false %>
+    <%= f.input :category, as: :hidden, label: false %>
+    <%= f.button :submit, "Add", class: "btn btn-primary" %>
+<% end %>

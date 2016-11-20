@@ -1,0 +1,18 @@
+<tfoot>
+  <%= simple_form_for [guide, step], remote:true do |f| %>
+  <tr class="warning">
+    <td>
+      <%= f.input :title, label: false, placeholder: 'Step' %>
+    </td>
+    <td>
+      <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
+      <%= f.input :address, as: :hidden, label: false %>
+      <%= f.input :city, as: :hidden, label: false %>
+      <%= f.input :category, as: :hidden, label: false %>
+    </td>
+    <td>
+      <%= f.button :submit, "Add", class: "btn btn-primary" %>
+    </td>
+  </tr>
+  <% end %>
+</tfoot>

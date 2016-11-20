@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     collection do                       # collection => no restaurant id in
       get 'search', to: "guides#search"  # RestaurantsController#top
     end
-    resources :steps
+    resources :steps, only: [:create, :destroy]
     resources :bookings do
       member do
         get 'payment'

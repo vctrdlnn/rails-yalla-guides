@@ -1,0 +1,15 @@
+// Here you will write *javascript* that would be executed by the browser
+<% if @step.errors.any? %>
+  // Render new step form with errors
+  $('#new_step').html("<%= j render 'steps/form', guide: @guide, step: @step %>");
+<% else %>
+  // Create a paragraph for the new step. But hide it.
+  console.log ("<%= j render 'steps/step_cards', step: @step %>")
+  var new_step = $("<%= j render 'steps/step_cards', step: @step %>").hide();
+  // Add it to the DOM, at the end of the existing steps. It's still hidden.
+  $('#steps_list').append(new_step);
+  // Show the new step with an animation!
+  new_step.slideDown();
+  // Reset the form
+  $('#new_step').html("<%= j render 'steps/form', guide: @guide, step: Step.new %>");
+<% end %>

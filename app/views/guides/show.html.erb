@@ -64,26 +64,7 @@
           <% if @owner %><th>Delete?</th><% end %>
         </tr>
       </thead>
-      <% if @owner %>
-      <tfoot>
-        <%= simple_form_for [@guide, @step] do |f| %>
-        <tr class="warning">
-          <td>
-            <%= f.input :title, label: false, placeholder: 'Step' %>
-          </td>
-          <td>
-            <%= f.input :establishment, label: false, placeholder: 'Establishment' %>
-            <%= f.input :address, as: :hidden, label: false %>
-            <%= f.input :city, as: :hidden, label: false %>
-            <%= f.input :category, as: :hidden, label: false %>
-          </td>
-          <td>
-            <%= f.button :submit, "Add", class: "btn btn-primary" %>
-          </td>
-        </tr>
-        <% end %>
-      </tfoot>
-      <% end %>
+
       <tbody>
        <% @guide.steps.each do |step| %>
        <tr>
@@ -102,6 +83,16 @@
     </table>
     </div>
     <div class="col-xs-12 col-sm-6 quarter step-map">
+      <div id="steps_list">
+        <% @guide.steps.each do |s| %>
+          <%= render "steps/step_cards", step: s %>
+        <% end %>
+      </div>
+        <% if @owner %>
+          <%= render "steps/form", guide: @guide, step: @step %>
+        <% end %>
+    </div>
+    <div class="col-xs-12 col-sm-6 quarter step-map">
       <div class="container-map-2">
         <div id="map" style="width: 100%; height: 500px;"></div>
       </div>
@@ -111,25 +102,25 @@
 
 
 <% content_for(:js) do %>
-<script>
-  $(document).ready(function() {
-    var handler = Gmaps.build('Google');
-    handler.buildMap({ internal: { id: 'map' } }, function() {
-      markers = handler.addMarkers(<%= raw @hash.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-      if (markers.length == 0) {
-        handler.getMap().setZoom(2);
-      } else if (markers.length == 1) {
-        handler.getMap().setZoom(14);
-      }
+  <script>
+    $(document).ready(function() {
+      var handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length == 1) {
+          handler.getMap().setZoom(14);
+        }
+      });
+      $('#booking_start_date').datetimepicker({
+        format: 'DD MMM YYYY'
+      });
+      $('#booking_meeting_time').datetimepicker({
+        format: 'HH:mm'
+      });
     });
-    $('#booking_start_date').datetimepicker({
-      format: 'DD MMM YYYY'
-    });
-    $('#booking_meeting_time').datetimepicker({
-      format: 'HH:mm'
-    });
-  });
-</script>
+  </script>
 <% end %>
